@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <requires lib="gtk" version="4.0"/>
-  <template class="MulticalendarWindow" parent="GtkApplicationWindow">
+  <template class="MulticalendarMainWindow" parent="GtkApplicationWindow">
     <property name="default-width">600</property>
     <property name="default-height">300</property>
     <child type="titlebar">
       <object class="GtkHeaderBar" id="header_bar">
         <child type="end">
-          <object class="GtkMenuButton">
+          <object class="GtkMenuButton" id="menu_button">
             <property name="icon-name">open-menu-symbolic</property>
             <property name="menu-model">primary_menu</property>
           </object>
@@ -26,6 +26,11 @@
   </template>
 
   <menu id="primary_menu">
+    <section>
+      <item>
+        <attribute name="custom">theme</attribute>
+      </item>
+    </section>
     <section>
       <item>
         <attribute name="label" translatable="yes">_Preferences</attribute>
