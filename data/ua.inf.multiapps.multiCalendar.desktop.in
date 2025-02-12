@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=multicalendar
+Exec=multicalendar
+Icon=ua.inf.multiapps.multiCalendar
+Terminal=false
+Type=Application
+Categories=GTK;
+StartupNotify=true

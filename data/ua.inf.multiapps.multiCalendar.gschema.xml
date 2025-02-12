@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="multicalendar">
+	<schema id="ua.inf.multiapps.multiCalendar" path="/ua/inf/multiapps/multiCalendar/">
+	</schema>
+</schemalist>

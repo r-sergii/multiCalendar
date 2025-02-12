@@ -1,0 +1,7 @@
+data/ua.inf.multiapps.multiCalendar.desktop.in
+data/ua.inf.multiapps.multiCalendar.appdata.xml.in
+data/ua.inf.multiapps.multiCalendar.gschema.xml
+src/window.ui
+src/main.vala
+src/window.vala
+
