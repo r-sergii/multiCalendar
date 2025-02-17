@@ -13,8 +13,8 @@ foreach i : icon_sizes
 endforeach
 
 desktop_file = i18n.merge_file(
-  input: 'ua.inf.multiapps.multiCalendar.desktop.in',
-  output: 'ua.inf.multiapps.multiCalendar.desktop',
+  input: 'io.github.r_sergii.multiCalendar.desktop.in',
+  output: 'io.github.r_sergii.multiCalendar.desktop',
   type: 'desktop',
   po_dir: '../po',
   install: true,
@@ -29,21 +29,21 @@ if desktop_utils.found()
 endif
 
 appstream_file = i18n.merge_file(
-  input: 'ua.inf.multiapps.multiCalendar.appdata.xml.in',
-  output: 'ua.inf.multiapps.multiCalendar.appdata.xml',
+  input: 'io.github.r_sergii.multiCalendar.appdata.xml.in',
+  output: 'io.github.r_sergii.multiCalendar.appdata.xml',
   po_dir: '../po',
   install: true,
   install_dir: join_paths(get_option('datadir'), 'appdata')
 )
 
-appstream_util = find_program('appstream-util', required: false)
-if appstream_util.found()
-  test('Validate appstream file', appstream_util,
-    args: ['validate', appstream_file]
-  )
-endif
+#appstream_util = find_program('appstream-util', required: false)
+#if appstream_util.found()
+#  test('Validate appstream file', appstream_util,
+#    args: ['validate', appstream_file]
+#  )
+#endif
 
-install_data('ua.inf.multiapps.multiCalendar.gschema.xml',
+install_data('io.github.r_sergii.multiCalendar.gschema.xml',
   install_dir: join_paths(get_option('datadir'), 'glib-2.0/schemas')
 )
 

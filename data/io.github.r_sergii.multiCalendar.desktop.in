@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=multicalendar
+Comment=Calendars of different nations, religions and cultures on your device
+Exec=multicalendar
+Icon=io.github.r_sergii.multiCalendar
+Terminal=false
+Type=Application
+Categories=Utility;Calendar;GNOME;GTK;
+StartupNotify=true
+Keywords=Calendars;Nations;Religions;Cultures;
+X-Purism-FormFactor=Workstation;

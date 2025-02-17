@@ -1,5 +1,5 @@
-data/ua.inf.multiapps.multiCalendar.desktop.in
-data/ua.inf.multiapps.multiCalendar.appdata.xml.in
-data/ua.inf.multiapps.multiCalendar.gschema.xml
+data/io.github.r_sergii.multiCalendar.desktop.in
+data/io.github.r_sergii.multiCalendar.appdata.xml.in
+data/io.github.r_sergii.multiCalendar.gschema.xml
 src/main.vala
 

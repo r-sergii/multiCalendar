@@ -1,4 +1,4 @@
-application_id = 'ua.inf.multiapps.multiCalendar'
+application_id = 'io.github.r_sergii.multiCalendar'
 calendar_france_id = 'calendar_france'
 calendar_east_id = 'calendar_east'
 calendar_buddhist_id = 'calendar_buddhist'

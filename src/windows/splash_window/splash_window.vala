@@ -11,7 +11,7 @@ namespace Multicalendar {
         }
 
         construct{
-            var logo = new Gtk.Image.from_icon_name("ua.inf.multiapps.multiCalendar") {
+            var logo = new Gtk.Image.from_icon_name("io.github.r_sergii.multiCalendar") {
                 pixel_size = 128
             };
 

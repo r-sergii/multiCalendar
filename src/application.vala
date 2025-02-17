@@ -1,21 +1,3 @@
-/* application.vala
- *
- * Copyright 2025 r-sergii
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
 namespace Multicalendar {
     public class Application : Adw.Application {
 
@@ -23,7 +5,7 @@ namespace Multicalendar {
         private Multicalendar.CalendarService _calendarService;
 
         public Application () {
-            Object (application_id: "ua.inf.multiapps.multiCalendar", flags: ApplicationFlags.FLAGS_NONE);
+            Object (application_id: "io.github.r_sergii.multiCalendar", flags: ApplicationFlags.FLAGS_NONE);
         }
 
         construct {
@@ -47,7 +29,7 @@ namespace Multicalendar {
 
             // Css settings
             var provider = new Gtk.CssProvider ();
-            provider.load_from_resource ("/ua/inf/multiapps/multiCalendar/theme_switcher.css");
+            provider.load_from_resource ("/io/github/r_sergii/multiCalendar/theme_switcher.css");
             Gtk.StyleContext.add_provider_for_display (Gdk.Display.get_default (), provider, Gtk.STYLE_PROVIDER_PRIORITY_USER);
 
             var win = this.active_window;
@@ -85,7 +67,7 @@ namespace Multicalendar {
 
             // Css settings
 //            var provider = new Gtk.CssProvider ();
-//            provider.load_from_resource ("/ua/inf/multiapps/multiCalendar/theme_switcher.css");
+//            provider.load_from_resource ("/io/github/r_sergii/multiCalendar/theme_switcher.css");
 //            Gtk.StyleContext.add_provider_for_display (Gdk.Display.get_default (), provider, Gtk.STYLE_PROVIDER_PRIORITY_USER);
 
             return win;
@@ -100,7 +82,7 @@ namespace Multicalendar {
 
             var win = new Adw.AboutWindow () {
                 application_name = "multiCalendar",
-                application_icon = "ua.inf.multiapps.multiCalendar",
+                application_icon = "io.github.r_sergii.multiCalendar",
                 version = "0.1.0",
                 copyright = "Copyright © 2025 Serhii Rudchenko",
 //                license_type = License.GPL_3_0,
