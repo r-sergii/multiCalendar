@@ -4,28 +4,36 @@ namespace Multicalendar {
         public Adw.ColorScheme theme { get; set; }
         private Multicalendar.CalendarService _calendarService;
 
+        private Multicalendar.SettingsService _settingsService;
+
         public Application () {
             Object (application_id: "io.github.r_sergii.multiCalendar", flags: ApplicationFlags.FLAGS_NONE);
         }
 
         construct {
             ActionEntry[] action_entries = {
+                { "language", this.on_language_action },
                 { "about", this.on_about_action },
                 { "preferences", this.on_preferences_action },
-                { "quit", this.quit }
+                { "quit", this.on_quit }
             };
             this.add_action_entries (action_entries, this);
+            this.set_accels_for_action ("app.language", {"<primary>l"});
+            this.set_accels_for_action ("app.about", {"<primary>a"});
             this.set_accels_for_action ("app.quit", {"<primary>q"});
 
             var set_theme_action = new GLib.PropertyAction ("set_app_theme", this, "theme");
             set_theme_action.notify.connect (this.set_app_theme);
             this.add_action (set_theme_action);
 
+            _settingsService = new SettingsService ();
             _calendarService = new CalendarService ();
         }
 
         public override void activate () {
             base.activate ();
+
+            init_app_theme ();
 
             // Css settings
             var provider = new Gtk.CssProvider ();
@@ -34,6 +42,14 @@ namespace Multicalendar {
 
             var win = this.active_window;
             if (win == null) {
+                var connectService = new ConnectService ();
+                bool result = connectService.connect ();
+                if (result == false) {
+                    var noconnect = new Multicalendar.NoConnectWindow (this);
+                    noconnect.present ();
+                    return;
+                }
+
                 var splash = new Multicalendar.SplashWindow (this);
                 splash.present ();
                 _calendarService.getItems ();
@@ -50,6 +66,12 @@ namespace Multicalendar {
          public Multicalendar.CalendarService calendarService {
             get {
                 return _calendarService;
+            }
+        }
+
+        public Multicalendar.SettingsService settingsService {
+            get {
+                return _settingsService;
             }
         }
 
@@ -85,7 +107,7 @@ namespace Multicalendar {
                 application_icon = "io.github.r_sergii.multiCalendar",
                 version = "0.1.0",
                 copyright = "Copyright © 2025 Serhii Rudchenko",
-//                license_type = License.GPL_3_0,
+//                license_type = License.Apache-2.0,
                 developer_name = "Serhii Rudchenko",
                 developers = {"Serhii Rudchenko email:sergej.rudchenko@gmail.com"},
                 translator_credits = _("translator-credits"),
@@ -100,8 +122,80 @@ namespace Multicalendar {
             message ("app.preferences action activated");
         }
 
+        private void init_app_theme () {
+            var th = settingsService.theme;
+            switch (th.theme) {
+                case 0: theme = Adw.ColorScheme.DEFAULT;
+                        break;
+                case 1: theme = Adw.ColorScheme.FORCE_LIGHT;
+                        break;
+                case 2: theme = Adw.ColorScheme.FORCE_DARK;
+                        break;
+                case 3: theme = Adw.ColorScheme.PREFER_LIGHT;
+                        break;
+                case 4: theme = Adw.ColorScheme.PREFER_DARK;
+                        break;
+                default: theme = Adw.ColorScheme.DEFAULT;
+                        break;
+            }
+            Adw.StyleManager.get_default ().set_color_scheme (this.theme);
+        }
+
         private void set_app_theme () {
             Adw.StyleManager.get_default ().set_color_scheme (this.theme);
+//            message (this.theme.to_string());
+
+            var th = settingsService.theme;
+
+            switch(theme) {
+                case Adw.ColorScheme.FORCE_LIGHT:
+//                    message ("FL");
+                    th.theme = 1;
+                    break;
+                case Adw.ColorScheme.FORCE_DARK:
+//                    message ("FD");
+                    th.theme = 2;
+                    break;
+                case Adw.ColorScheme.PREFER_LIGHT:
+//                    message ("PFL");
+                    th.theme = 3;
+                    break;
+                case Adw.ColorScheme.PREFER_DARK:
+//                    message ("PFL");
+                    th.theme = 4;
+                    break;
+                case Adw.ColorScheme.DEFAULT:
+//                    message ("DEF");
+                    th.theme = 0;
+                    break;
+                default:
+//                    message ("default");
+                    th.theme = 0;
+                    break;
+            }
+//            th.toSettings ();
+            settingsService.writeTheme ();
+
+        }
+
+        private void on_language_action () {
+//            message ("language action show activated");
+
+            var language = new Multicalendar.LanguageWindow (this.active_window as Multicalendar.MainWindow);
+            language.set_transient_for (this.active_window);
+            language.show ();
+
+//            (this.active_window as Multiclock.MainWindow).init_menu ();
+        }
+
+        private void on_quit () {
+//            this.get_windows ().foreach ((obj) => {
+  //              var win = (Multicalendar.MainWindow) obj;
+    //            win.close_all ();
+      //      });
+            Multicalendar.MainWindow win = this.active_window as Multicalendar.MainWindow;
+            win.on_close_application ();
         }
     }
 }
+

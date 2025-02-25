@@ -15,13 +15,25 @@ namespace Multicalendar {
                 pixel_size = 128
             };
 
+            //get current theme
+            var app = GLib.Application.get_default();
+            var theme = (app as Multicalendar.Application).theme;
+            var locale = (app as Multicalendar.Application).settingsService.locale;
+
             //var
             pbar = new CircularProgressWidgets.CircularProgressBar ();
             pbar.percentage = 0;//.44;
             pbar.line_width = 10;
             pbar.center_filled = true;
             pbar.radius_filled = true;
-            pbar.center_fill_color = "#FAFAFA";
+
+            if((theme == Adw.ColorScheme.FORCE_LIGHT) || (theme == Adw.ColorScheme.PREFER_LIGHT)
+                || (theme == Adw.ColorScheme.DEFAULT)) {
+                pbar.center_fill_color = "#FAFAFA";
+            } else {
+                pbar.center_fill_color = "#050505";
+            }
+//            pbar.center_fill_color = "#FAFAFA";
   //          pbar.radius_fill_color = "#0099FF";
     //        pbar.progress_fill_color = "#DDDAAD";
 
