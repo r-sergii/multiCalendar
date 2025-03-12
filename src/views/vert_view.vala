@@ -11,12 +11,12 @@ namespace Multicalendar {
         construct{
             listWidgets = new Gee.ArrayList<DateWidget> ();
 
-//            var app = GLib.Application.get_default();
-  //          var clockService = (app as Multiclock.Application).clockService;
+            var app = GLib.Application.get_default();
+            var calendarService = (app as Multicalendar.Application).calendarService;
 
-            for(int i = 0; i < 10; i++) {
+            for(int i = 0; i < calendarService.listCalendars.size; i++) {
 
-                var label = new DateWidget(i.to_string ());
+                var label = new DateWidget(calendarService.listCalendars[i].calendar);
 
                 this.append (label);
                 listWidgets.add (label);

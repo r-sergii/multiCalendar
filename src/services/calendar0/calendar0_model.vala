@@ -1,6 +1,6 @@
 namespace Multicalendar {
 
-    class Calendar0Field {
+    public abstract class Calendar0Field {
         public const string year = "year";
         public const string month = "month";
         public const string day = "day";
@@ -34,49 +34,49 @@ namespace Multicalendar {
         }
 
         public Calendar0Model.fromJson (Json.Node item) {
-            Calendar0Field calendar0Field = new Calendar0Field();
+//            Calendar0Field calendar0Field = new Calendar0Field();
 
             Json.Object obj = item.get_object ();
             foreach(unowned string name in obj.get_members ()) {
                 switch(name) {
-                    case calendar0Field.year:
+                    case Calendar0Field.year:
                         unowned Json.Node it = obj.get_member (name);
-                        year = obj.get_string_member (calendar0Field.year);
+                        year = obj.get_string_member (Calendar0Field.year);
                         message(year);
                         break;
-                    case calendar0Field.month:
+                    case Calendar0Field.month:
                         unowned Json.Node it = obj.get_member (name);
-                        month = obj.get_string_member (calendar0Field.month);
+                        month = obj.get_string_member (Calendar0Field.month);
                         message (month);
                         break;
-                    case calendar0Field.day:
+                    case Calendar0Field.day:
                         unowned Json.Node it = obj.get_member (name);
-                        day = obj.get_string_member (calendar0Field.day);
+                        day = obj.get_string_member (Calendar0Field.day);
                         message (day);
                         break;
-                    case calendar0Field.month_name:
+                    case Calendar0Field.month_name:
                         unowned Json.Node it = obj.get_member (name);
-                        month_name = obj.get_string_member (calendar0Field.month_name);
+                        month_name = obj.get_string_member (Calendar0Field.month_name);
                         message(month_name);
                         break;
-                    case calendar0Field.weekday:
+                    case Calendar0Field.weekday:
                         unowned Json.Node it = obj.get_member (name);
-                        weekday = obj.get_int_member (calendar0Field.weekday);
+                        weekday = obj.get_int_member (Calendar0Field.weekday);
                         message(weekday.to_string());
                         break;
-                    case calendar0Field.weekday_name:
+                    case Calendar0Field.weekday_name:
                         unowned Json.Node it = obj.get_member (name);
-                        weekday_name = obj.get_string_member (calendar0Field.weekday_name);
+                        weekday_name = obj.get_string_member (Calendar0Field.weekday_name);
                         message(weekday_name);
                         break;
-                    case calendar0Field.week:
+                    case Calendar0Field.week:
                         unowned Json.Node it = obj.get_member (name);
-                        week = obj.get_int_member (calendar0Field.week);
+                        week = obj.get_int_member (Calendar0Field.week);
                         message(week.to_string());
                         break;
-                    case calendar0Field.calendar_name:
+                    case Calendar0Field.calendar_name:
                         unowned Json.Node it = obj.get_member (name);
-                        calendar_name = obj.get_string_member (calendar0Field.calendar_name);
+                        calendar_name = obj.get_string_member (Calendar0Field.calendar_name);
                         message(calendar_name);
                         break;
                     default:

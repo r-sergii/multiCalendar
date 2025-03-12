@@ -2,12 +2,13 @@ namespace Multicalendar {
     public class Application : Adw.Application {
 
         public Adw.ColorScheme theme { get; set; }
-        private Multicalendar.Calendar0Service _calendar0Service;
+        private Multicalendar.CalendarService _calendarService;
 
         private Multicalendar.VertView _vertView;
         private Multicalendar.HorizView _horizView;
 
         private Multicalendar.SettingsService _settingsService;
+        private GLib.DateTime _dateTime;
 
         public Application () {
             Object (application_id: "io.github.r_sergii.multiCalendar", flags: ApplicationFlags.FLAGS_NONE);
@@ -29,8 +30,9 @@ namespace Multicalendar {
             set_theme_action.notify.connect (this.set_app_theme);
             this.add_action (set_theme_action);
 
+            _dateTime = new GLib.DateTime.now ();
             _settingsService = new SettingsService ();
-            _calendar0Service = new Calendar0Service ();
+            _calendarService = new CalendarService ();
         }
 
         public override void activate () {
@@ -55,7 +57,7 @@ namespace Multicalendar {
 
                 var splash = new Multicalendar.SplashWindow (this);
                 splash.present ();
-                _calendar0Service.getItems ();
+                _calendarService.getItems (_dateTime);
                 Timeout.add (3000, make_window);
 
 //                win = this.create_window ();
@@ -66,9 +68,15 @@ namespace Multicalendar {
             win.present ();
         }
 
-         public Multicalendar.Calendar0Service calendar0Service {
+         public GLib.DateTime dateTime {
             get {
-                return _calendar0Service;
+                return _dateTime;
+            }
+        }
+
+         public Multicalendar.CalendarService calendarService {
+            get {
+                return _calendarService;
             }
         }
 
