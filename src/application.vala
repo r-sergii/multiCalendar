@@ -2,7 +2,10 @@ namespace Multicalendar {
     public class Application : Adw.Application {
 
         public Adw.ColorScheme theme { get; set; }
-        private Multicalendar.CalendarService _calendarService;
+        private Multicalendar.Calendar0Service _calendar0Service;
+
+        private Multicalendar.VertView _vertView;
+        private Multicalendar.HorizView _horizView;
 
         private Multicalendar.SettingsService _settingsService;
 
@@ -27,7 +30,7 @@ namespace Multicalendar {
             this.add_action (set_theme_action);
 
             _settingsService = new SettingsService ();
-            _calendarService = new CalendarService ();
+            _calendar0Service = new Calendar0Service ();
         }
 
         public override void activate () {
@@ -52,7 +55,7 @@ namespace Multicalendar {
 
                 var splash = new Multicalendar.SplashWindow (this);
                 splash.present ();
-                _calendarService.getItems ();
+                _calendar0Service.getItems ();
                 Timeout.add (3000, make_window);
 
 //                win = this.create_window ();
@@ -63,9 +66,27 @@ namespace Multicalendar {
             win.present ();
         }
 
-         public Multicalendar.CalendarService calendarService {
+         public Multicalendar.Calendar0Service calendar0Service {
             get {
-                return _calendarService;
+                return _calendar0Service;
+            }
+        }
+
+        public Multicalendar.VertView vertView {
+            get {
+                return _vertView;
+            }
+            set {
+                _vertView = value;
+            }
+        }
+
+        public Multicalendar.HorizView horizView {
+            get {
+                return _horizView;
+            }
+            set {
+                _horizView = value;
             }
         }
 

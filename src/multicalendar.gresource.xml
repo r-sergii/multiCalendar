@@ -6,5 +6,6 @@
     <file>gtk/help-overlay.ui</file>
     <file>widgets/theme_switcher/theme_switcher.ui</file>
     <file alias="theme_switcher.css">widgets/theme_switcher/theme_switcher.css</file>
+    <file alias="date_widget.css">widgets/date_widget/date_widget.css</file>
   </gresource>
 </gresources>

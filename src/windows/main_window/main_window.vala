@@ -1,15 +1,26 @@
 namespace Multicalendar {
     [GtkTemplate (ui = "/io/github/r_sergii/multiCalendar/windows/main_window/main_window.ui")]
     public class MainWindow : Gtk.ApplicationWindow {
-        [GtkChild]
-        private unowned Gtk.Label label;
+//        [GtkChild]
+//        private unowned Gtk.Label label;
+        private Gtk.CssProvider css_provider;
 
+        [GtkChild]
+        private unowned Gtk.Box mainBox;//list;
         private MyLib.ThemeSwitcher theme_switcher;
         [GtkChild]
         private unowned Gtk.MenuButton menu_button;
 
+        private Multicalendar.VertView vertView;
+        private Multicalendar.HorizView horizView;
+        private bool isVert;
+        private Gtk.ScrolledWindow scroll;
+
         public MainWindow (Gtk.Application app) {
             Object (application: app);
+            this.bind_property("default-width", this, "windowWidth", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
+            this.bind_property("default-height", this, "windowHeight", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
+            this.bind_property("maximized", this, "isMaximized", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
         }
 
         public void init_menu () {
@@ -49,7 +60,90 @@ namespace Multicalendar {
     //        pop.add_child (this.theme_switcher, "theme");
 
             init_menu ();
+
+            css_provider = new Gtk.CssProvider();
+            css_provider.load_from_resource("/io/github/r_sergii/multiCalendar/date_widget.css");
+            Gtk.StyleContext.add_provider_for_display(Gdk.Display.get_default(),css_provider,Gtk.STYLE_PROVIDER_PRIORITY_USER);
+
+            //Gtk.ScrolledWindow
+            scroll = new Gtk.ScrolledWindow ();//null, null);
+            scroll.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
+            scroll.set_vexpand(true);
+            scroll.set_hexpand(true);
+
+            vertView = new VertView ();
+            horizView = new HorizView ();
+            var app = GLib.Application.get_default();
+
+            (app as Multicalendar.Application).vertView = vertView;
+            (app as Multicalendar.Application).horizView = horizView;
+
+            applyView ();
+            mainBox.append (scroll);
         }
+
+        private void applyView () {
+            if (windowHeight >= windowWidth) {
+                scroll.set_child (vertView);
+                isVert = true;
+            }
+            else {
+                scroll.set_child (horizView);
+                isVert = false;
+            }
+
+        }
+
+/////// Size determination
+        public int windowHeight {
+            get { return get_height(); }
+            set {
+                Idle.add(() => {
+//                    print(@"window height: $value\n");
+                    return Source.REMOVE;
+                });
+                if ((windowHeight >= windowWidth) && (isVert != true)) {
+                    applyView ();
+                }
+                if ((windowHeight < windowWidth) && (isVert == true)) {
+                    applyView ();
+                }
+            }
+        }
+
+        public int windowWidth {
+            get { return get_width(); }
+            set {
+                Idle.add(() => {
+//                    print(@"window width: $value\n");
+                    return Source.REMOVE;
+                });
+                //grid.set_size_request (get_width (), get_height ());
+                if ((windowHeight >= windowWidth) && (isVert != true)) {
+                    applyView ();
+                }
+                if ((windowHeight < windowWidth) && (isVert == true)) {
+                    applyView ();
+                }
+            }
+        }
+
+        public bool isMaximized {
+            get { return maximized; }
+            set {
+                Idle.add(() => {
+//                    print(@"window maximized: $isMaximized; width: $(get_width())\n");
+                    return Source.REMOVE;
+                });
+                if ((windowHeight >= windowWidth) && (isVert != true)) {
+                    applyView ();
+                }
+                if ((windowHeight < windowWidth) && (isVert == true)) {
+                    applyView ();
+                }
+            }
+        }
+/////???
 
         private void on_language_action () {
 //            message ("language action show activated");

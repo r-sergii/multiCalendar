@@ -1,15 +1,15 @@
 namespace Multicalendar {
 
-    class CalendarProvider {
+    class Calendar0Provider {
         const string baseUrl = "https://multiapps-seven.vercel.app/api/calendar/";
 
         Http.Client http;
 
-        public CalendarProvider() {
+        public Calendar0Provider() {
             http = new Http.Client();
         }
 
-        public void getItems ( Gee.ArrayList<CalendarModel> listCalendars ) {
+        public void getItems ( Gee.ArrayList<Calendar0Model> listCalendars ) {
             var host = baseUrl + "GR";
 
             try {
@@ -24,7 +24,7 @@ namespace Multicalendar {
                     unowned Json.Array arr = node.get_array();
                     int i = 0;
                     foreach(unowned Json.Node item in arr.get_elements ()) {
-                        listCalendars.add (new CalendarModel.fromJson (item) );
+                        listCalendars.add (new Calendar0Model.fromJson (item) );
 
                         i++;
                         message(i.to_string());

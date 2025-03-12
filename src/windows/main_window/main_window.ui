@@ -15,12 +15,17 @@
       </object>
     </child>
     <child>
+      <!--
       <object class="GtkLabel" id="label">
         <property name="label">Hello, World!</property>
         <attributes>
           <attribute name="weight" value="bold"/>
           <attribute name="scale" value="2"/>
         </attributes>
+      </object>
+    </child>
+    -->
+      <object class="GtkBox" id="mainBox">
       </object>
     </child>
   </template>
