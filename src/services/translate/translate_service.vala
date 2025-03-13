@@ -25,7 +25,7 @@ namespace Multicalendar {
                 + temp.about + ";" + temp.quit + ";" + temp.ok + ";" + temp.cancel + ";"
                 + temp.close + ";" + temp.choose_lang + ";" + temp.yes_rem + ";" + temp.no_rem + ";"
                 + temp.choose_cities + ";" + temp.bad_inet + ";" + temp.exit_ + ";"
-                + temp.make_connect + ";" + temp.are_exit;
+                + temp.make_connect + ";" + temp.are_exit + ";" + temp.calendar + ";" + temp.week;
 
 //            message (translateModel.lang);
 //            message (translateModel.words);

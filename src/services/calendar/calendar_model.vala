@@ -2,6 +2,7 @@ namespace Multicalendar {
 
     public abstract class CalendarField {
         public const string calendar = "calendar";
+        public const string image = "image";
         public const string year = "year";
         public const string month = "month";
         public const string day = "day";
@@ -11,15 +12,18 @@ namespace Multicalendar {
 
         public class CalendarModel {
         public string calendar;
+        public string image;
         public string year;
         public string month;
         public string day;
         public string week;
         public string day_year;
 
-        public CalendarModel(string _calendar, string _year, string _month, string _day,
+        public CalendarModel(string _calendar, string _image,
+                        string _year, string _month, string _day,
                         string _week, string _day_year ) {
             calendar = _calendar;
+            image = _image;
             year = _year;
             month = _month;
             day = _day;
@@ -38,6 +42,11 @@ namespace Multicalendar {
                         unowned Json.Node it = obj.get_member (name);
                         calendar = obj.get_string_member (CalendarField.calendar);
                         message(calendar);
+                        break;
+                    case CalendarField.image:
+                        unowned Json.Node it = obj.get_member (name);
+                        image = obj.get_string_member (CalendarField.image);
+                        message(image);
                         break;
                     case CalendarField.year:
                         unowned Json.Node it = obj.get_member (name);

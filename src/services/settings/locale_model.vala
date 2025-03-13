@@ -18,6 +18,8 @@ namespace Multicalendar {
         public const string make_connect = "make-connect";
         public const string exit_ = "exit";
         public const string are_exit = "are-exit";
+        public const string calendar = "calendar";
+        public const string week = "week";
     }
 
     const char SPACE = 32;
@@ -40,6 +42,8 @@ namespace Multicalendar {
         public string make_connect;
         public string exit_;
         public string are_exit;
+        public string calendar;
+        public string week;
 
         public LocaleModel() {
             reinit ();
@@ -63,6 +67,8 @@ namespace Multicalendar {
             make_connect = "Make%20the%20connection%20and%20try%20again";
             exit_ = "Exit?";
             are_exit = "Are%20you%20sure%20you%20want%20to%20exit?";
+            calendar = "calendar";
+            week = "Week";
         }
 
         public void reinit () {
@@ -83,6 +89,8 @@ namespace Multicalendar {
             make_connect = "Make the connection and try again";
             exit_ = "Exit?";
             are_exit = "Are you sure you want to exit?";
+            calendar = "calendar";
+            week = "Week";
         }
 
         public void fromSettings (GLib.Settings settings)
@@ -106,6 +114,8 @@ namespace Multicalendar {
             make_connect = settings.get_string (LocaleField.make_connect);
             exit_ = settings.get_string (LocaleField.exit_);
             are_exit = settings.get_string (LocaleField.are_exit);
+            calendar = settings.get_string (LocaleField.calendar);
+            week = settings.get_string (LocaleField.week);
         }
 
         public void toSettings (GLib.Settings settings)
@@ -129,6 +139,8 @@ namespace Multicalendar {
             settings.set_string (LocaleField.make_connect, make_connect);
             settings.set_string (LocaleField.exit_, exit_);
             settings.set_string (LocaleField.are_exit, are_exit);
+            settings.set_string (LocaleField.calendar, calendar);
+            settings.set_string (LocaleField.week, week);
         }
 
     }

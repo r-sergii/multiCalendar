@@ -55,5 +55,11 @@
 	  <key name="are-exit" type="s">
 	    <default>"Are you sure you want to exit?"</default>
 	  </key>
+	  <key name="calendar" type="s">
+	    <default>"calendar"</default>
+	  </key>
+	  <key name="week" type="s">
+	    <default>"Week"</default>
+	  </key>
 	</schema>
 </schemalist>

@@ -3,22 +3,33 @@ namespace Multicalendar {
     public class DateWidget : Gtk.DrawingArea {
 
         private string text;
+        private string date;
+        private string week;
+        private Gdk.Pixbuf pixbuf;
+        private Adw.ColorScheme theme;
 
-        public DateWidget (string _text)//Multiclock.ClockModel model, string __svg)
+        public DateWidget (Multicalendar.CalendarModel model, Multicalendar.LocaleModel local)
         {
-            text = _text;
+            text = model.calendar + " " + local.calendar;
+            date = model.year + "/" + model.month + "/" + model.day;
+            week = local.week + " : " + model.week;
+            pixbuf = new Gdk.Pixbuf.from_resource_at_scale ( model.image, 96, 96, true);
 
-            this.set_size_request (300, 300);
+            this.set_size_request (300, 200);
             this.set_draw_func (draw_func);
         }
 
         private void draw_func (Gtk.DrawingArea drawing_area, Cairo.Context context, int width, int height)
         {
+            var app = GLib.Application.get_default();
+            var calendarService = (app as Multicalendar.Application).calendarService;
+            theme = (app as Multicalendar.Application).theme;
+
             var x = width / 2;
             var y = height / 2;
 
             int size_cell_width = 300;//width / 1;
-            int size_cell_height = 300;//height / 1;
+            int size_cell_height = 200;//height / 1;
 
 
             // Get necessary data:
@@ -27,12 +38,23 @@ namespace Multicalendar {
 	//		    int width = drawing_area.get_allocated_width ();
 			Gdk.RGBA color = style_context.get_color ();
 
+            if((theme == Adw.ColorScheme.FORCE_LIGHT) || (theme == Adw.ColorScheme.PREFER_LIGHT)) {
+                context.set_source_rgb (0, 0, 0);
+            } else {
+                context.set_source_rgb (1, 1, 1);
+            }
+
             roundRect(context, color, //multiElement.Resourse.gNemetal,
 	                x - size_cell_width / 2, y - size_cell_height / 2,
 	                //width, height,
 	                //size_cell_width * 0, size_cell_height * 0,
 	                size_cell_width, size_cell_height,
 	                100, text);
+
+	        // show calendar icon
+            Gdk.cairo_set_source_pixbuf(context, pixbuf, x - 150, y - 50);
+            context.rectangle ( x - 160, y - 60,pixbuf.get_width() + 20, pixbuf.get_height() + 20);
+            context.fill();
         }
 
         private void roundRect(Cairo.Context context, Gdk.RGBA color, //MyLib.HexColor hColor,
@@ -59,6 +81,15 @@ namespace Multicalendar {
   	        context.move_to (x + width / 2 - font_size / 2, y + height / 2 + font_size / 2);
   	        //context.move_to (x, y + 12);
   	        context.show_text (text);
+
+  	        context.move_to (x + width / 2 - font_size / 2, y + height / 3 + font_size / 2);
+  	        //context.move_to (x, y + 12);
+  	        context.show_text (date);
+
+  	        context.move_to (x + width / 2 - font_size / 2, y + height / 1.5 + font_size / 2);
+  	        //context.move_to (x, y + 12);
+  	        context.show_text (week);
+
   	        context.close_path();
         }
     }

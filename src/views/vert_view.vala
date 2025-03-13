@@ -13,10 +13,10 @@ namespace Multicalendar {
 
             var app = GLib.Application.get_default();
             var calendarService = (app as Multicalendar.Application).calendarService;
+            var locale = (app as Multicalendar.Application).settingsService.locale;
 
             for(int i = 0; i < calendarService.listCalendars.size; i++) {
-
-                var label = new DateWidget(calendarService.listCalendars[i].calendar);
+                var label = new DateWidget(calendarService.listCalendars[i], locale);
 
                 this.append (label);
                 listWidgets.add (label);
