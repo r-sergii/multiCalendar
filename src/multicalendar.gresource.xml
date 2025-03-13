@@ -7,5 +7,18 @@
     <file>widgets/theme_switcher/theme_switcher.ui</file>
     <file alias="theme_switcher.css">widgets/theme_switcher/theme_switcher.css</file>
     <file alias="date_widget.css">widgets/date_widget/date_widget.css</file>
+    <file>image/calendar_gregorian.svg</file>
+    <file>image/calendar_julian.svg</file>
+    <file>image/calendar_hijiri.svg</file>
+    <file>image/calendar_persian.svg</file>
+    <file>image/calendar_hebrew.svg</file>
+    <file>image/calendar_east.svg</file>
+    <file>image/calendar_buddhist.svg</file>
+    <file>image/calendar_coptic.svg</file>
+    <file>image/calendar_ephiop.svg</file>
+    <file>image/calendar_france.svg</file>
+    <file>image/calendar_bahai.svg</file>
+    <file>image/calendar_japan.svg</file>
+    <file>image/calendar_hc.svg</file>
   </gresource>
 </gresources>

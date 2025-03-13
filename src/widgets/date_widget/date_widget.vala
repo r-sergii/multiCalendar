@@ -14,8 +14,12 @@ namespace Multicalendar {
 
         private void draw_func (Gtk.DrawingArea drawing_area, Cairo.Context context, int width, int height)
         {
-            int size_cell_width = width / 1;
-            int size_cell_height = height / 1;
+            var x = width / 2;
+            var y = height / 2;
+
+            int size_cell_width = 300;//width / 1;
+            int size_cell_height = 300;//height / 1;
+
 
             // Get necessary data:
 			weak Gtk.StyleContext style_context = drawing_area.get_style_context ();
@@ -24,8 +28,11 @@ namespace Multicalendar {
 			Gdk.RGBA color = style_context.get_color ();
 
             roundRect(context, color, //multiElement.Resourse.gNemetal,
-	                size_cell_width * 1, size_cell_height * 1,
-	                size_cell_width, size_cell_height, 100, text);
+	                x - size_cell_width / 2, y - size_cell_height / 2,
+	                //width, height,
+	                //size_cell_width * 0, size_cell_height * 0,
+	                size_cell_width, size_cell_height,
+	                100, text);
         }
 
         private void roundRect(Cairo.Context context, Gdk.RGBA color, //MyLib.HexColor hColor,
