@@ -20,6 +20,9 @@ namespace Multicalendar {
         public const string are_exit = "are-exit";
         public const string calendar = "calendar";
         public const string week = "week";
+        public const string week_day = "week-day";
+        public const string day = "day";
+        public const string from = "from";
     }
 
     const char SPACE = 32;
@@ -44,6 +47,9 @@ namespace Multicalendar {
         public string are_exit;
         public string calendar;
         public string week;
+        public string week_day;
+        public string day;
+        public string from;
 
         public LocaleModel() {
             reinit ();
@@ -69,6 +75,9 @@ namespace Multicalendar {
             are_exit = "Are%20you%20sure%20you%20want%20to%20exit?";
             calendar = "calendar";
             week = "Week";
+            week_day = "Week%20Day";
+            day = "Day";
+            from = "from";
         }
 
         public void reinit () {
@@ -91,6 +100,9 @@ namespace Multicalendar {
             are_exit = "Are you sure you want to exit?";
             calendar = "calendar";
             week = "Week";
+            week_day = "Week Day";
+            day = "Day";
+            from = "from";
         }
 
         public void fromSettings (GLib.Settings settings)
@@ -116,6 +128,9 @@ namespace Multicalendar {
             are_exit = settings.get_string (LocaleField.are_exit);
             calendar = settings.get_string (LocaleField.calendar);
             week = settings.get_string (LocaleField.week);
+            week_day = settings.get_string (LocaleField.week_day);
+            day = settings.get_string (LocaleField.day);
+            from = settings.get_string (LocaleField.from);
         }
 
         public void toSettings (GLib.Settings settings)
@@ -141,7 +156,9 @@ namespace Multicalendar {
             settings.set_string (LocaleField.are_exit, are_exit);
             settings.set_string (LocaleField.calendar, calendar);
             settings.set_string (LocaleField.week, week);
+            settings.set_string (LocaleField.week_day, week_day);
+            settings.set_string (LocaleField.day, day);
+            settings.set_string (LocaleField.from, from);
         }
-
     }
 }

@@ -7,29 +7,49 @@ namespace Multicalendar {
         public const string month = "month";
         public const string day = "day";
         public const string week = "week";
-        public const string day_year = "day_year";
+        public const string dayOfYear = "day_of_year";
+        public const string daysInYear = "days_in_year";
+        public const string daysInMonth = "days_in_month";
+        public const string isLeap = "is_leap";
+        public const string monthName = "month_name";
+        public const string monthNameNum = "month_name_num";
+        public const string dayName = "day_name";
     }
 
-        public class CalendarModel {
+    public class CalendarModel {
         public string calendar;
         public string image;
         public string year;
         public string month;
         public string day;
         public string week;
-        public string day_year;
+        public string dayOfYear;
+        public string daysInYear;
+        public string daysInMonth;
+        public string isLeap;
+        public string monthName;
+        public string monthNameNum;
+        public string dayName;
 
         public CalendarModel(string _calendar, string _image,
                         string _year, string _month, string _day,
-                        string _week, string _day_year ) {
+                        string _week, string _dayOfYear, string _daysInYear, string _daysInMonth,
+                        string _isLeap,
+                        string _monthName, string _monthNameNum, string _dayName)
+        {
             calendar = _calendar;
             image = _image;
             year = _year;
             month = _month;
             day = _day;
             week = _week;
-            day_year = _day_year;
-
+            dayOfYear = _dayOfYear;
+            daysInYear = _daysInYear;
+            daysInMonth = _daysInMonth;
+            isLeap = _isLeap;
+            monthName = _monthName;
+            monthNameNum = _monthNameNum;
+            dayName = _dayName;
         }
 
         public CalendarModel.fromJson (Json.Node item) {
@@ -68,10 +88,40 @@ namespace Multicalendar {
                         week = obj.get_string_member (CalendarField.week);
                         message(week);
                         break;
-                    case CalendarField.day_year:
+                    case CalendarField.dayOfYear:
                         unowned Json.Node it = obj.get_member (name);
-                        day_year = obj.get_string_member (CalendarField.day_year);
-                        message(day_year);
+                        dayOfYear = obj.get_string_member (CalendarField.dayOfYear);
+                        message(dayOfYear);
+                        break;
+                    case CalendarField.daysInYear:
+                        unowned Json.Node it = obj.get_member (name);
+                        daysInYear = obj.get_string_member (CalendarField.daysInYear);
+                        message(daysInYear);
+                        break;
+                    case CalendarField.daysInMonth:
+                        unowned Json.Node it = obj.get_member (name);
+                        daysInMonth = obj.get_string_member (CalendarField.daysInMonth);
+                        message(daysInMonth);
+                        break;
+                    case CalendarField.isLeap:
+                        unowned Json.Node it = obj.get_member (name);
+                        isLeap = obj.get_string_member (CalendarField.isLeap);
+                        message(isLeap);
+                        break;
+                    case CalendarField.monthName:
+                        unowned Json.Node it = obj.get_member (name);
+                        monthName = obj.get_string_member (CalendarField.monthName);
+                        message(monthName);
+                        break;
+                    case CalendarField.monthNameNum:
+                        unowned Json.Node it = obj.get_member (name);
+                        monthNameNum = obj.get_string_member (CalendarField.monthNameNum);
+                        message(monthNameNum);
+                        break;
+                    case CalendarField.dayName:
+                        unowned Json.Node it = obj.get_member (name);
+                        dayName = obj.get_string_member (CalendarField.dayName);
+                        message(dayName);
                         break;
                     default:
                         break;

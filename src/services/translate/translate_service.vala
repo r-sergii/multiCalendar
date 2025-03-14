@@ -25,7 +25,8 @@ namespace Multicalendar {
                 + temp.about + ";" + temp.quit + ";" + temp.ok + ";" + temp.cancel + ";"
                 + temp.close + ";" + temp.choose_lang + ";" + temp.yes_rem + ";" + temp.no_rem + ";"
                 + temp.choose_cities + ";" + temp.bad_inet + ";" + temp.exit_ + ";"
-                + temp.make_connect + ";" + temp.are_exit + ";" + temp.calendar + ";" + temp.week;
+                + temp.make_connect + ";" + temp.are_exit + ";" + temp.calendar + ";"
+                + temp.week + ";" + temp.week_day + ";" + temp.day + ";" + temp.from;
 
 //            message (translateModel.lang);
 //            message (translateModel.words);
@@ -95,6 +96,21 @@ namespace Multicalendar {
                         break;
                     case "Are you sure you want to exit?":
                         _currentLocale.are_exit = listTranslator[i].translation;
+                        break;
+                    case "calendar":
+                        _currentLocale.calendar = listTranslator[i].translation;
+                        break;
+                    case "Week":
+                        _currentLocale.week = listTranslator[i].translation;
+                        break;
+                    case "Week Day":
+                        _currentLocale.week_day = listTranslator[i].translation;
+                        break;
+                    case "Day":
+                        _currentLocale.day = listTranslator[i].translation;
+                        break;
+                    case "from":
+                        _currentLocale.from = listTranslator[i].translation;
                         break;
                     default:
                         break;

@@ -4,7 +4,10 @@ namespace Multicalendar {
 
         private string text;
         private string date;
+        private string datefull;
+        private string day;
         private string week;
+        private string weekday;
         private Gdk.Pixbuf pixbuf;
         private Adw.ColorScheme theme;
 
@@ -12,10 +15,13 @@ namespace Multicalendar {
         {
             text = model.calendar + " " + local.calendar;
             date = model.year + "/" + model.month + "/" + model.day;
+            datefull = model.day + "/" + model.monthName + "/" + model.year;
             week = local.week + " : " + model.week;
-            pixbuf = new Gdk.Pixbuf.from_resource_at_scale ( model.image, 96, 96, true);
+            day = local.day + ": " + model.dayOfYear + " " + local.from + " " + model.daysInYear;
+            weekday = local.week_day + ": " + model.dayName;
+            pixbuf = new Gdk.Pixbuf.from_resource_at_scale ( model.image, 80, 80, true);
 
-            this.set_size_request (300, 200);
+            this.set_size_request (360, 140);
             this.set_draw_func (draw_func);
         }
 
@@ -28,8 +34,8 @@ namespace Multicalendar {
             var x = width / 2;
             var y = height / 2;
 
-            int size_cell_width = 300;//width / 1;
-            int size_cell_height = 200;//height / 1;
+            int size_cell_width = 340;//width / 1;
+            int size_cell_height = 140;//height / 1;
 
 
             // Get necessary data:
@@ -49,11 +55,11 @@ namespace Multicalendar {
 	                //width, height,
 	                //size_cell_width * 0, size_cell_height * 0,
 	                size_cell_width, size_cell_height,
-	                100, text);
+	                50, text);
 
 	        // show calendar icon
-            Gdk.cairo_set_source_pixbuf(context, pixbuf, x - 150, y - 50);
-            context.rectangle ( x - 160, y - 60,pixbuf.get_width() + 20, pixbuf.get_height() + 20);
+            Gdk.cairo_set_source_pixbuf(context, pixbuf, x - 160, y - 40);
+            context.rectangle ( x - 170, y - 50,pixbuf.get_width() + 20, pixbuf.get_height() + 20);
             context.fill();
         }
 
@@ -77,16 +83,35 @@ namespace Multicalendar {
             context.stroke();
 
             context.select_font_face ("Adventure", Cairo.FontSlant.NORMAL, Cairo.FontWeight.BOLD);
-    	    context.set_font_size (font_size);
-  	        context.move_to (x + width / 2 - font_size / 2, y + height / 2 + font_size / 2);
+    	    context.set_font_size (font_size + 2);
+  	        //context.move_to (x + width / 3.25 - font_size / 2, y + height / 5 + font_size / 2);
+  	        context.move_to (x + width / 3.25 - font_size / 2, y + 28 + font_size / 2);
+  	        //context.move_to (x, y + 12);
+  	        context.show_text (datefull);
+
+            context.set_font_size (font_size);
+  	        //context.move_to (x + width / 3.25 - font_size / 2, y + height / 2.75 + font_size / 2);
+  	        context.move_to (x + width / 3.25 - font_size / 2, y + 50 + font_size / 2);
   	        //context.move_to (x, y + 12);
   	        context.show_text (text);
 
-  	        context.move_to (x + width / 2 - font_size / 2, y + height / 3 + font_size / 2);
+  	        //context.move_to (x + width / 3.25 - font_size / 2, y + height / 2.1 + font_size / 2);
+  	        context.move_to (x + width / 3.25 - font_size / 2, y + 66 + font_size / 2);
+  	        //context.move_to (x, y + 12);
+  	        context.show_text (weekday);
+
+  	        //context.move_to (x + width / 3.25 - font_size / 2, y + height / 1.75 + font_size / 2);
+  	        context.move_to (x + width / 3.25 - font_size / 2, y + 82 + font_size / 2);
   	        //context.move_to (x, y + 12);
   	        context.show_text (date);
 
-  	        context.move_to (x + width / 2 - font_size / 2, y + height / 1.5 + font_size / 2);
+  	        //context.move_to (x + width / 3.25 - font_size / 2, y + height / 1.5 + font_size / 2);
+  	        context.move_to (x + width / 3.25 - font_size / 2, y + 98 + font_size / 2);
+  	        //context.move_to (x, y + 12);
+  	        context.show_text (day);
+
+  	        //context.move_to (x + width / 3.25 - font_size / 2, y + height / 1.25 + font_size / 2);
+  	        context.move_to (x + width / 3.25 - font_size / 2, y + 114 + font_size / 2);
   	        //context.move_to (x, y + 12);
   	        context.show_text (week);
 

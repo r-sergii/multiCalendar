@@ -61,5 +61,14 @@
 	  <key name="week" type="s">
 	    <default>"Week"</default>
 	  </key>
+	  <key name="week-day" type="s">
+	    <default>"Week Day"</default>
+	  </key>
+	  <key name="day" type="s">
+	    <default>"Day"</default>
+	  </key>
+	  <key name="from" type="s">
+	    <default>"from"</default>
+	  </key>
 	</schema>
 </schemalist>
