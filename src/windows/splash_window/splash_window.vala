@@ -4,7 +4,7 @@ namespace Multicalendar {
     public class SplashWindow : Adw.Window {
 
         private Gtk.Box main_box;
-        private CircularProgressWidgets.CircularProgressBar pbar;
+        private ProgressWidgets.ProcentProgressBar pbar;
 
         public SplashWindow (Gtk.Application app) {
             Object (application: app);
@@ -21,12 +21,12 @@ namespace Multicalendar {
             var locale = (app as Multicalendar.Application).settingsService.locale;
 
             //var
-            pbar = new CircularProgressWidgets.CircularProgressBar ();
+            pbar = new ProgressWidgets.ProcentProgressBar ();
             pbar.percentage = 0;//.44;
             pbar.line_width = 10;
-            pbar.center_filled = true;
+//            pbar.center_filled = true;
             pbar.radius_filled = true;
-
+/*
             if((theme == Adw.ColorScheme.FORCE_LIGHT) || (theme == Adw.ColorScheme.PREFER_LIGHT)
                 || (theme == Adw.ColorScheme.DEFAULT)) {
                 pbar.center_fill_color = "#FAFAFA";
@@ -36,7 +36,7 @@ namespace Multicalendar {
 //            pbar.center_fill_color = "#FAFAFA";
   //          pbar.radius_fill_color = "#0099FF";
     //        pbar.progress_fill_color = "#DDDAAD";
-
+*/
             Gtk.Label title = new Gtk.Label("multiCalendar");
             title.set_markup ("<span size='22000'> multiCalendar </span>");
             Gtk.Label load = new Gtk.Label("loading ...");

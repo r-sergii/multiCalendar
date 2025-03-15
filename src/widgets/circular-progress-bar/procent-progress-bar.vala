@@ -1,13 +1,13 @@
 using Gtk;
 using Cairo;
 
-namespace CircularProgressWidgets {
-    public class CircularProgressBar : Gtk.DrawingArea {
+namespace ProgressWidgets {
+    public class ProcentProgressBar : Gtk.DrawingArea {
         private int _line_width;
         private double _percentage;
-        private string _center_fill_color; 
+        private string _center_fill_color;
         private string _radius_fill_color;
-        private string _progress_fill_color; 
+        private string _progress_fill_color;
 
         [Description(nick = "Center Fill", blurb = "Center Fill toggle")]
         public bool center_filled {set; get; default = false;}
@@ -20,7 +20,7 @@ namespace CircularProgressWidgets {
 
         [Description(nick = "Line Cap", blurb = "Line Cap for stroke as in Cairo.LineCap")]
         public Cairo.LineCap line_cap {set; get; default = Cairo.LineCap.BUTT;}
-        
+
         [Description(nick = "Inside circle fill color", blurb = "Center pad fill color (Check Gdk.RGBA parse method)")]
         public string center_fill_color {
             get {
@@ -78,8 +78,8 @@ namespace CircularProgressWidgets {
 
         [Description(nick = "Percentage/Value", blurb = "The percentage value [0.0 ... 1.0]")]
         public double percentage {
-            get { 
-                return _percentage; 
+            get {
+                return _percentage;
             }
             set {
                 if (value > 1.0) {
@@ -100,7 +100,7 @@ namespace CircularProgressWidgets {
             _progress_fill_color = "#4a90d9";
         }
 
-        public CircularProgressBar () {
+        public ProcentProgressBar () {
             set_draw_func(draw);
 
             notify.connect (() => {
@@ -122,7 +122,7 @@ namespace CircularProgressWidgets {
             Gdk.RGBA color;
             Pango.Layout layout;
             Pango.FontDescription desc;
-            
+
             cr.save ();
 
             color = Gdk.RGBA ();
@@ -137,7 +137,7 @@ namespace CircularProgressWidgets {
             } else {
                 delta = radius - (line_width / 2);
             }
-            
+
             color = Gdk.RGBA ();
             cr.set_line_cap  (line_cap);
             cr.set_line_width (line_width);
@@ -195,7 +195,7 @@ namespace CircularProgressWidgets {
             desc = Pango.FontDescription.from_string (font + " 24");
             layout.set_font_description (desc);
             Pango.cairo_update_layout (cr, layout);
-            layout.get_size (out w, out h); 
+            layout.get_size (out w, out h);
             cr.move_to (center_x - ((w / Pango.SCALE) / 2), center_y - 27 );
             Pango.cairo_show_layout (cr, layout);
 
@@ -204,7 +204,7 @@ namespace CircularProgressWidgets {
             desc = Pango.FontDescription.from_string (font + " 8");
             layout.set_font_description (desc);
             Pango.cairo_update_layout (cr, layout);
-            layout.get_size (out w, out h); 
+            layout.get_size (out w, out h);
             cr.move_to (center_x - ((w / Pango.SCALE) / 2), center_y + 13);
             Pango.cairo_show_layout (cr, layout);
             context.restore ();

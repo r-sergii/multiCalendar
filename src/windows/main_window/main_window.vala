@@ -13,6 +13,7 @@ namespace Multicalendar {
 
         private Multicalendar.VertView vertView;
         private Multicalendar.HorizView horizView;
+        private Multicalendar.WaitView waitView;
         private bool isVert;
         private Gtk.ScrolledWindow scroll;
 
@@ -73,6 +74,7 @@ namespace Multicalendar {
 
             vertView = new VertView ();
             horizView = new HorizView ();
+            waitView = new WaitView ();
             var app = GLib.Application.get_default();
 
             (app as Multicalendar.Application).vertView = vertView;
@@ -84,7 +86,8 @@ namespace Multicalendar {
 
         private void applyView () {
             if (windowHeight >= windowWidth) {
-                scroll.set_child (vertView);
+//                scroll.set_child (vertView);
+                scroll.set_child (waitView);
                 isVert = true;
             }
             else {
