@@ -15,6 +15,8 @@ calendar_coptic_id = 'calendar_coptic'
 ok_id = 'ok128'
 cancel_id = 'cancel128'
 no_connect_id = 'no_connect128'
+circle_indicator_id = 'circle_indicator128'
+circle_circle_id = 'circle_circle128'
 
 scalable_dir = join_paths('hicolor', 'scalable', 'apps')
 install_data(
@@ -35,6 +37,8 @@ install_data(
   join_paths(scalable_dir, ('@0@.svg').format(ok_id)),
   join_paths(scalable_dir, ('@0@.svg').format(cancel_id)),
   join_paths(scalable_dir, ('@0@.svg').format(no_connect_id)),
+  join_paths(scalable_dir, ('@0@.svg').format(circle_indicator_id)),
+  join_paths(scalable_dir, ('@0@.svg').format(circle_circle_id)),
   install_dir: join_paths(get_option('datadir'), 'icons', scalable_dir)
 )
 

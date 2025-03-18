@@ -11,6 +11,8 @@ namespace Multicalendar {
         private Gdk.Pixbuf pixbuf;
         private Adw.ColorScheme theme;
 
+        private Gtk.GestureClick press;
+
         public DateWidget (Multicalendar.CalendarModel model, Multicalendar.LocaleModel local)
         {
             text = model.calendar + " " + local.calendar;
@@ -23,6 +25,19 @@ namespace Multicalendar {
 
             this.set_size_request (360, 140);
             this.set_draw_func (draw_func);
+
+            press = new Gtk.GestureClick ();
+            press.set_button (Gdk.BUTTON_PRIMARY);// & Gdk.BUTTON_SECONDARY);
+            press.pressed.connect ((gesture, n_press, x, y) => {
+                stdout.printf("mouse click !!! %d, %f, %f \n", n_press, x, y);
+
+                var app = GLib.Application.get_default();
+                Multicalendar.MainWindow win = (app as Multicalendar.Application).active_window as Multicalendar.MainWindow;
+                win.model = model;
+                win.applyCalendar ();
+            });
+
+            this.add_controller (press);
         }
 
         private void draw_func (Gtk.DrawingArea drawing_area, Cairo.Context context, int width, int height)

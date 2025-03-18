@@ -14,6 +14,7 @@ namespace Multicalendar {
         public const string monthName = "month_name";
         public const string monthNameNum = "month_name_num";
         public const string dayName = "day_name";
+        public const string dayExoticMonth = "day_exotic_month";
     }
 
     public class CalendarModel {
@@ -30,12 +31,14 @@ namespace Multicalendar {
         public string monthName;
         public string monthNameNum;
         public string dayName;
+        public string dayExoticMonth;
 
         public CalendarModel(string _calendar, string _image,
                         string _year, string _month, string _day,
                         string _week, string _dayOfYear, string _daysInYear, string _daysInMonth,
                         string _isLeap,
-                        string _monthName, string _monthNameNum, string _dayName)
+                        string _monthName, string _monthNameNum, string _dayName,
+                        string _dayExoticMonth)
         {
             calendar = _calendar;
             image = _image;
@@ -50,6 +53,7 @@ namespace Multicalendar {
             monthName = _monthName;
             monthNameNum = _monthNameNum;
             dayName = _dayName;
+            dayExoticMonth = _dayExoticMonth;
         }
 
         public CalendarModel.fromJson (Json.Node item) {
@@ -122,6 +126,11 @@ namespace Multicalendar {
                         unowned Json.Node it = obj.get_member (name);
                         dayName = obj.get_string_member (CalendarField.dayName);
                         message(dayName);
+                        break;
+                    case CalendarField.dayExoticMonth:
+                        unowned Json.Node it = obj.get_member (name);
+                        dayExoticMonth = obj.get_string_member (CalendarField.dayExoticMonth);
+                        message(dayExoticMonth);
                         break;
                     default:
                         break;

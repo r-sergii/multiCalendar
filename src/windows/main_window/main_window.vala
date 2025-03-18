@@ -10,10 +10,15 @@ namespace Multicalendar {
         private MyLib.ThemeSwitcher theme_switcher;
         [GtkChild]
         private unowned Gtk.MenuButton menu_button;
+        [GtkChild]
+        private unowned Gtk.Button back_button;
+//        [GtkChild]
+  //      private unowned Adw.MenuButton open_button;
 
         private Multicalendar.VertView vertView;
         private Multicalendar.HorizView horizView;
-        private Multicalendar.WaitView waitView;
+        private Multicalendar.CalendarView calendarView;
+//        private Multicalendar.WaitView waitView;
         private bool isVert;
         private Gtk.ScrolledWindow scroll;
 
@@ -62,6 +67,8 @@ namespace Multicalendar {
 
             init_menu ();
 
+            back_button.clicked.connect (on_apply_view);
+
             css_provider = new Gtk.CssProvider();
             css_provider.load_from_resource("/io/github/r_sergii/multiCalendar/date_widget.css");
             Gtk.StyleContext.add_provider_for_display(Gdk.Display.get_default(),css_provider,Gtk.STYLE_PROVIDER_PRIORITY_USER);
@@ -74,7 +81,8 @@ namespace Multicalendar {
 
             vertView = new VertView ();
             horizView = new HorizView ();
-            waitView = new WaitView ();
+            calendarView = new CalendarView ();
+            //waitView = new WaitView ();
             var app = GLib.Application.get_default();
 
             (app as Multicalendar.Application).vertView = vertView;
@@ -84,10 +92,30 @@ namespace Multicalendar {
             mainBox.append (scroll);
         }
 
+        public void applyCalendar () {
+            scroll.set_child (calendarView);
+            menu_button.visible = false;
+            back_button.visible = true;
+        }
+
+        private void on_apply_view () {
+            applyView ();
+        }
+
+        public Multicalendar.CalendarModel model {
+            set {
+                calendarView.calendarModel = value;
+            }
+        }
+
         private void applyView () {
+            back_button.visible = false;
+            menu_button.visible = true;
             if (windowHeight >= windowWidth) {
-//                scroll.set_child (vertView);
-                scroll.set_child (waitView);
+                scroll.set_child (vertView);
+//                scroll.set_child (waitView);
+  //
+    //            back_button.visible = true;
                 isVert = true;
             }
             else {

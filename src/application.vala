@@ -68,13 +68,13 @@ namespace Multicalendar {
             win.present ();
         }
 
-         public GLib.DateTime dateTime {
+        public GLib.DateTime dateTime {
             get {
                 return _dateTime;
             }
         }
 
-         public Multicalendar.CalendarService calendarService {
+        public Multicalendar.CalendarService calendarService {
             get {
                 return _calendarService;
             }

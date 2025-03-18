@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" style="transform: rotate(-90deg)">
+  <circle r="50" cx="64" cy="64" fill="transparent" stroke="#fafa2d" stroke-width="12px"></circle>
+  <circle r="50" cx="64" cy="64" fill="transparent" stroke="#3b71f7" stroke-width="12px" stroke-dasharray="439.6px" stroke-dashoffset="279.8px"></circle>
+</svg>

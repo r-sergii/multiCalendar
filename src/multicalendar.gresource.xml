@@ -20,5 +20,7 @@
     <file>image/calendar_bahai.svg</file>
     <file>image/calendar_japan.svg</file>
     <file>image/calendar_hc.svg</file>
+    <file>image/circle_indicator128.svg</file>
+    <file>image/circle_circle128.svg</file>
   </gresource>
 </gresources>
