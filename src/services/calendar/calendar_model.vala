@@ -14,7 +14,9 @@ namespace Multicalendar {
         public const string monthName = "month_name";
         public const string monthNameNum = "month_name_num";
         public const string dayName = "day_name";
-        public const string dayExoticMonth = "day_exotic_month";
+        public const string firstDayExoticMonth = "first_day_exotic_month";
+        public const string firstWeekExoticMonth = "first_week_exotic_month";
+        public const string shortNameDay = "short_name_day";
     }
 
     public class CalendarModel {
@@ -31,14 +33,21 @@ namespace Multicalendar {
         public string monthName;
         public string monthNameNum;
         public string dayName;
-        public string dayExoticMonth;
+        public string firstDayExoticMonth;
+        public string firstWeekExoticMonth;
+        public Gee.ArrayList<string> shortNameDay;
+        //public Gtk.StringList shortNameDay;
+        //public Json.Array shortNameDay;
 
         public CalendarModel(string _calendar, string _image,
                         string _year, string _month, string _day,
                         string _week, string _dayOfYear, string _daysInYear, string _daysInMonth,
                         string _isLeap,
                         string _monthName, string _monthNameNum, string _dayName,
-                        string _dayExoticMonth)
+                        string _firstDayExoticMonth, string _firstWeekExoticMonth,
+                        Gee.ArrayList<string> _shortNameDay)
+                        //Gtk.StringList _shortNameDay)
+                        //Json.Array _shortNameDay)
         {
             calendar = _calendar;
             image = _image;
@@ -53,11 +62,15 @@ namespace Multicalendar {
             monthName = _monthName;
             monthNameNum = _monthNameNum;
             dayName = _dayName;
-            dayExoticMonth = _dayExoticMonth;
+            firstDayExoticMonth = _firstDayExoticMonth;
+            firstWeekExoticMonth = _firstWeekExoticMonth;
+            shortNameDay = _shortNameDay;
         }
 
         public CalendarModel.fromJson (Json.Node item) {
 //            CalendarField calendarField = new CalendarField();
+            //Gtk.StringList shortNameDay = new Gtk.StringList([]);
+            shortNameDay = new Gee.ArrayList<string>();
 
             Json.Object obj = item.get_object ();
             foreach(unowned string name in obj.get_members ()) {
@@ -127,14 +140,48 @@ namespace Multicalendar {
                         dayName = obj.get_string_member (CalendarField.dayName);
                         message(dayName);
                         break;
-                    case CalendarField.dayExoticMonth:
+                    case CalendarField.firstDayExoticMonth:
                         unowned Json.Node it = obj.get_member (name);
-                        dayExoticMonth = obj.get_string_member (CalendarField.dayExoticMonth);
-                        message(dayExoticMonth);
+                        firstDayExoticMonth = obj.get_string_member (CalendarField.firstDayExoticMonth);
+                        message(firstDayExoticMonth);
+                        break;
+                    case CalendarField.firstWeekExoticMonth:
+                        unowned Json.Node it = obj.get_member (name);
+                        firstWeekExoticMonth = obj.get_string_member (CalendarField.firstWeekExoticMonth);
+                        message(firstWeekExoticMonth);
+                        break;
+                    case CalendarField.shortNameDay:
+                        unowned Json.Node it = obj.get_member (name);
+                        Json.Array jsonArrayShortNameDay = obj.get_array_member (CalendarField.shortNameDay);
+                        //message(shortNameDay.get_string_element (0));
+//                        parseJsonArray (jsonArrayShortNameDay, shortNameDay);
+//                        shortNameDay.clear ();
+                        int64 count = jsonArrayShortNameDay.get_length ();
+                        message (count.to_string());
+                        for(int i = 0;i<count;i++) {
+//                            shortNameDay.append ("jsonArrayShortNameDay.get_string_element (i)");
+                            shortNameDay.add (jsonArrayShortNameDay.get_string_element (i));
+                        }
+//                        for(int i = 0;i<shortNameDay.get_n_items();i++) {
+  //                          message(shortNameDay.get_string(i));
+    //                    }
+
+                        for(int i = 0;i<shortNameDay.size;i++) {
+                            message(shortNameDay[i]);
+                        }
                         break;
                     default:
                         break;
                 }
+            }
+        }
+
+        private void parseJsonArray (Json.Array arr, Gee.ArrayList<string> list) {
+            list.clear ();
+            int64 count = arr.get_length ();
+            for(int i = 0;i<count;i++) {
+                list.add (arr.get_string_element (i));
+//                message(arr.get_string_element (i));
             }
         }
     }

@@ -93,6 +93,9 @@ namespace Multicalendar {
         }
 
         public void applyCalendar () {
+            var app = GLib.Application.get_default();
+            var locale = (app as Multicalendar.Application).settingsService.locale;
+            this.set_title (calendarView.calendarModel.calendar + " " + locale.calendar);
             scroll.set_child (calendarView);
             menu_button.visible = false;
             back_button.visible = true;
@@ -106,11 +109,20 @@ namespace Multicalendar {
             set {
                 calendarView.calendarModel = value;
             }
+            get {
+//                if(calendarView.calendarModel != null) {
+                    return calendarView.calendarModel;
+  //              }
+    //            else {
+      //              return new Multicalendar.CalendarModel("", "", "", "", "", "", "", "", "", "", "", "", "", "");
+        //        }
+            }
         }
 
         private void applyView () {
             back_button.visible = false;
             menu_button.visible = true;
+            this.set_title ("multiCalendar");
             if (windowHeight >= windowWidth) {
                 scroll.set_child (vertView);
 //                scroll.set_child (waitView);
