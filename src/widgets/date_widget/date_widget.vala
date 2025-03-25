@@ -6,21 +6,37 @@ namespace Multicalendar {
         private string date;
         private string datefull;
         private string day;
+        private string month;
+        private string monthTrans;
+        private string year;
         private string week;
         private string weekday;
+        private string weekdayname;
+        private string weekdaytrans;
         private Gdk.Pixbuf pixbuf;
         private Adw.ColorScheme theme;
+        private string font;
 
         private Gtk.GestureClick press;
 
+        const int DIVIDE = 80;
+        const int DIVIDE2 = 30;
+        const int DIVIDE3 = 100;
+
         public DateWidget (Multicalendar.CalendarModel model, Multicalendar.LocaleModel local)
         {
+            font = model.font;
             text = model.calendar + " " + local.calendar;
             date = model.year + "/" + model.month + "/" + model.day;
-            datefull = model.day + "/" + model.monthName + "/" + model.year;
+            datefull = model.day + "/";// + model.monthName + "/" + model.year;
+            month = model.monthName;
+            monthTrans = model.monthNameNum;
+            year = " /" + model.year;
             week = local.week + " : " + model.week;
             day = local.day + ": " + model.dayOfYear + " " + local.from + " " + model.daysInYear;
-            weekday = local.week_day + ": " + model.dayName;
+            weekday = local.week_day + ": ";
+            weekdayname = model.dayName;
+            weekdaytrans = model.dayTranslateName;
             pixbuf = new Gdk.Pixbuf.from_resource_at_scale ( model.image, 80, 80, true);
 
             this.set_size_request (360, 140);
@@ -98,40 +114,81 @@ namespace Multicalendar {
             context.stroke();
 
             context.select_font_face ("Adventure", Cairo.FontSlant.NORMAL, Cairo.FontWeight.BOLD);
+//            context.select_font_face ("Noto Sans Mono CJK HK", Cairo.FontSlant.NORMAL, Cairo.FontWeight.BOLD);
+//            context.select_font_face ("Noto Sans Ethiopic", Cairo.FontSlant.NORMAL, Cairo.FontWeight.BOLD);
+//            context.select_font_face ("Noto Sans Thai", Cairo.FontSlant.NORMAL, Cairo.FontWeight.BOLD);
+//            context.select_font_face ("Noto Sans Coptic", Cairo.FontSlant.NORMAL, Cairo.FontWeight.BOLD);
     	    context.set_font_size (font_size + 2);
   	        //context.move_to (x + width / 3.25 - font_size / 2, y + height / 5 + font_size / 2);
-  	        context.move_to (x + width / 3.25 - font_size / 2, y + 28 + font_size / 2);
+  	        context.move_to (x + width / 3.25 - font_size / 2, y + 14 + font_size / 2); //28
   	        //context.move_to (x, y + 12);
   	        context.show_text (datefull);
 
+            context.select_font_face(font, Cairo.FontSlant.NORMAL, Cairo.FontWeight.BOLD);
+  	        context.move_to (x + width / 3.25 - font_size / 2 + DIVIDE2, y + 14 + font_size / 2); //28
+  	        //context.move_to (x, y + 12);
+  	        context.show_text (month);
+
+            context.select_font_face ("Adventure", Cairo.FontSlant.NORMAL, Cairo.FontWeight.BOLD);
+  	        context.move_to (x + width / 3.25 - font_size / 2 + DIVIDE3, y + 14 + font_size / 2); //28
+  	        //context.move_to (x, y + 12);
+  	        context.show_text (year);
+
+  	        context.move_to (x + width / 3.25 - font_size / 2 + DIVIDE2, y + 28 + font_size / 2); //28
+  	        //context.move_to (x, y + 12);
+  	        context.show_text (monthTrans);
+
             context.set_font_size (font_size);
   	        //context.move_to (x + width / 3.25 - font_size / 2, y + height / 2.75 + font_size / 2);
-  	        context.move_to (x + width / 3.25 - font_size / 2, y + 50 + font_size / 2);
+  	        context.move_to (x + width / 3.25 - font_size / 2, y + 44 + font_size / 2); //50
   	        //context.move_to (x, y + 12);
   	        context.show_text (text);
 
   	        //context.move_to (x + width / 3.25 - font_size / 2, y + height / 2.1 + font_size / 2);
-  	        context.move_to (x + width / 3.25 - font_size / 2, y + 66 + font_size / 2);
+  	        context.move_to (x + width / 3.25 - font_size / 2, y + 60 + font_size / 2); //66
   	        //context.move_to (x, y + 12);
   	        context.show_text (weekday);
 
+            context.select_font_face(font, Cairo.FontSlant.NORMAL, Cairo.FontWeight.BOLD);
+  	        //context.move_to (x + width / 3.25 - font_size / 2, y + height / 2.1 + font_size / 2);
+  	        context.move_to (x + width / 3.25 - font_size / 2 + DIVIDE, y + 60 + font_size / 2); //66
+  	        //context.move_to (x, y + 12);
+  	        context.show_text (weekdayname);
+
+            context.select_font_face ("Adventure", Cairo.FontSlant.NORMAL, Cairo.FontWeight.BOLD);
+  	        //context.move_to (x + width / 3.25 - font_size / 2, y + height / 2.1 + font_size / 2);
+  	        context.move_to (x + width / 3.25 - font_size / 2 + DIVIDE, y + 76 + font_size / 2); //66
+  	        //context.move_to (x, y + 12);
+  	        context.show_text (weekdaytrans);
+
   	        //context.move_to (x + width / 3.25 - font_size / 2, y + height / 1.75 + font_size / 2);
-  	        context.move_to (x + width / 3.25 - font_size / 2, y + 82 + font_size / 2);
+  	        context.move_to (x + width / 3.25 - font_size / 2, y + 92 + font_size / 2); //82
   	        //context.move_to (x, y + 12);
   	        context.show_text (date);
 
   	        //context.move_to (x + width / 3.25 - font_size / 2, y + height / 1.5 + font_size / 2);
-  	        context.move_to (x + width / 3.25 - font_size / 2, y + 98 + font_size / 2);
+  	        context.move_to (x + width / 3.25 - font_size / 2, y + 108 + font_size / 2); //98
   	        //context.move_to (x, y + 12);
   	        context.show_text (day);
 
   	        //context.move_to (x + width / 3.25 - font_size / 2, y + height / 1.25 + font_size / 2);
-  	        context.move_to (x + width / 3.25 - font_size / 2, y + 114 + font_size / 2);
+  	        context.move_to (x + width / 3.25 - font_size / 2, y + 124 + font_size / 2); //114
   	        //context.move_to (x, y + 12);
   	        context.show_text (week);
 
   	        context.close_path();
         }
+/*
+        private void draw_pango_text(Cairo.Context cr, string text) {
+            var layout = PangoCairo.create_layout (cr);
+            layout.set_text (text);
+
+            var desc = Pango.FontDescription.from_string ("Noto Sans 12");
+            layout.set_font_description(desc);
+
+            PangoCairo.show_layout (cr, layout);
+        }
+        */
     }
 
 //    const string LIGHTGREY = "lightgrey";

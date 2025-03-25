@@ -3,6 +3,7 @@ namespace Multicalendar {
     public abstract class CalendarField {
         public const string calendar = "calendar";
         public const string image = "image";
+        public const string font = "font";
         public const string year = "year";
         public const string month = "month";
         public const string day = "day";
@@ -14,6 +15,7 @@ namespace Multicalendar {
         public const string monthName = "month_name";
         public const string monthNameNum = "month_name_num";
         public const string dayName = "day_name";
+        public const string dayTranslateName = "day_translate_name";
         public const string firstDayExoticMonth = "first_day_exotic_month";
         public const string firstWeekExoticMonth = "first_week_exotic_month";
         public const string shortNameDay = "short_name_day";
@@ -22,6 +24,7 @@ namespace Multicalendar {
     public class CalendarModel {
         public string calendar;
         public string image;
+        public string font;
         public string year;
         public string month;
         public string day;
@@ -33,17 +36,19 @@ namespace Multicalendar {
         public string monthName;
         public string monthNameNum;
         public string dayName;
+        public string dayTranslateName;
         public string firstDayExoticMonth;
         public string firstWeekExoticMonth;
         public Gee.ArrayList<string> shortNameDay;
         //public Gtk.StringList shortNameDay;
         //public Json.Array shortNameDay;
 
-        public CalendarModel(string _calendar, string _image,
+        public CalendarModel(string _calendar, string _image, string _font,
                         string _year, string _month, string _day,
                         string _week, string _dayOfYear, string _daysInYear, string _daysInMonth,
                         string _isLeap,
-                        string _monthName, string _monthNameNum, string _dayName,
+                        string _monthName, string _monthNameNum,
+                        string _dayName, string _dayTranslateName,
                         string _firstDayExoticMonth, string _firstWeekExoticMonth,
                         Gee.ArrayList<string> _shortNameDay)
                         //Gtk.StringList _shortNameDay)
@@ -51,6 +56,7 @@ namespace Multicalendar {
         {
             calendar = _calendar;
             image = _image;
+            font = _font;
             year = _year;
             month = _month;
             day = _day;
@@ -62,6 +68,7 @@ namespace Multicalendar {
             monthName = _monthName;
             monthNameNum = _monthNameNum;
             dayName = _dayName;
+            dayTranslateName = _dayTranslateName;
             firstDayExoticMonth = _firstDayExoticMonth;
             firstWeekExoticMonth = _firstWeekExoticMonth;
             shortNameDay = _shortNameDay;
@@ -84,6 +91,11 @@ namespace Multicalendar {
                         unowned Json.Node it = obj.get_member (name);
                         image = obj.get_string_member (CalendarField.image);
                         message(image);
+                        break;
+                    case CalendarField.font:
+                        unowned Json.Node it = obj.get_member (name);
+                        font = obj.get_string_member (CalendarField.font);
+                        message(font);
                         break;
                     case CalendarField.year:
                         unowned Json.Node it = obj.get_member (name);
@@ -139,6 +151,11 @@ namespace Multicalendar {
                         unowned Json.Node it = obj.get_member (name);
                         dayName = obj.get_string_member (CalendarField.dayName);
                         message(dayName);
+                        break;
+                    case CalendarField.dayTranslateName:
+                        unowned Json.Node it = obj.get_member (name);
+                        dayTranslateName = obj.get_string_member (CalendarField.dayTranslateName);
+                        message(dayTranslateName);
                         break;
                     case CalendarField.firstDayExoticMonth:
                         unowned Json.Node it = obj.get_member (name);

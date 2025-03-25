@@ -28,9 +28,9 @@ namespace Multicalendar {
 //////// days week
 
                 for(int i = 0;i<_model.shortNameDay.size;i++) {
-    	            roundRect(context, color,
+    	            roundRectDay(context, color,
     	                size_cell_width * (i + 1), size_cell_height * 1,
-    	                size_cell_width, size_cell_height, 10, _model.shortNameDay[i], true);
+    	                size_cell_width, size_cell_height, 10, _model.shortNameDay[i], _model.font);
                 }
 /////////// nomers weeks
                 int m = int.parse(_model.firstWeekExoticMonth);
@@ -80,7 +80,8 @@ namespace Multicalendar {
             height--;
             width--;
             height--;
-            int font_size = 12;
+            message(height.to_string());
+            int font_size = height / 3;// 12;
             context.move_to(x,y+height/2);
             context.set_line_width(1);
             context.arc(x+r, y+r, r, Math.PI, 3*Math.PI/2);
@@ -101,13 +102,56 @@ namespace Multicalendar {
 	        //context.set_source_rgb(0.5, 0.5, 0.5);
             context.stroke();
 
-            context.select_font_face ("Adventure", Cairo.FontSlant.NORMAL, Cairo.FontWeight.BOLD);
+//            context.select_font_face ("Adventure", Cairo.FontSlant.NORMAL, Cairo.FontWeight.BOLD);
+            context.select_font_face ("MonospaceMono", Cairo.FontSlant.NORMAL, Cairo.FontWeight.BOLD);
     	    context.set_font_size (font_size);
-  	        context.move_to (x + width / 2 - font_size / 2, y + height / 2 + font_size / 2);
+//  	        context.move_to (x + width / 2 - font_size / 2, y + height / 2 + font_size / 2);
+//  	        context.move_to (x + width / 2 - font_size, y + height / 2 + font_size / 2);
+  	        context.move_to (x, y + height / 2 + font_size / 2);
+
+//  	        context.move_to (x + width / 2 - 0 * font_size * element.length / 2 , y + height / 2 + font_size / 2);
   	        //context.move_to (x, y + 12);
   	        context.show_text (element);
   	        context.close_path();
         }
+
+        private void roundRectDay(Cairo.Context context, Gdk.RGBA color,
+            int x, int y, int width, int height, int r, string element, string font)
+        {
+            x++;
+            y++;
+            width--;
+            height--;
+            width--;
+            height--;
+            message(height.to_string());
+            int font_size = height / 3;// 12;
+            context.move_to(x,y+height/2);
+            context.set_line_width(1);
+            context.arc(x+r, y+r, r, Math.PI, 3*Math.PI/2);
+            context.arc(x+width-r, y+r, r, 3*Math.PI/2, 0);
+            context.arc(x+width-r, y+height-r, r, 0, Math.PI/2);
+            context.arc(x+r, y+height-r, r, Math.PI/2, Math.PI);
+            context.close_path();
+
+            context.set_source_rgb (revert(color.red), revert(color.green), revert(color.blue));
+            context.fill_preserve ();
+
+	        Gdk.cairo_set_source_rgba (context, color);
+	        //context.set_source_rgb(0.5, 0.5, 0.5);
+            context.stroke();
+
+//            context.select_font_face ("Adventure", Cairo.FontSlant.NORMAL, Cairo.FontWeight.BOLD);
+            context.select_font_face (font, Cairo.FontSlant.NORMAL, Cairo.FontWeight.BOLD);
+    	    context.set_font_size (font_size);
+//  	        context.move_to (x + width / 2 - font_size / 2, y + height / 2 + font_size / 2);
+//  	        context.move_to (x + width / 2 - font_size, y + height / 2 + font_size / 2);
+  	        context.move_to (x, y + height / 2 + font_size / 2);
+
+  	        context.show_text (element);
+  	        context.close_path();
+        }
+
 
         private double revert(double value) {
             if (value == 1) {

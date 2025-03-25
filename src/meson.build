@@ -38,6 +38,8 @@ multicalendar_deps = [
   dependency('gio-2.0'),
   dependency('gee-0.8'),
   dependency('json-glib-1.0')
+#  dependency('pango', version: '>= 1.0'),
+#  dependency('pangocairo', version: '>= 1.0')
 ]
 
 gnome = import('gnome')
