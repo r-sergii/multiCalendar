@@ -102,7 +102,7 @@ namespace Multicalendar {
                         year = obj.get_string_member (CalendarField.year);
                         message(year);
                         break;
-                    case Calendar0Field.month:
+                    case CalendarField.month:
                         unowned Json.Node it = obj.get_member (name);
                         month = obj.get_string_member (CalendarField.month);
                         message (month);

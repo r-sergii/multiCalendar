@@ -3,6 +3,7 @@ namespace Multicalendar {
 
         public Adw.ColorScheme theme { get; set; }
         private Multicalendar.CalendarService _calendarService;
+        private Multicalendar.MonthsService _monthsService;
 
         private Multicalendar.VertView _vertView;
         private Multicalendar.HorizView _horizView;
@@ -33,6 +34,7 @@ namespace Multicalendar {
             _dateTime = new GLib.DateTime.now ();
             _settingsService = new SettingsService ();
             _calendarService = new CalendarService ();
+            _monthsService = new MonthsService ();
         }
 
         public override void activate () {
@@ -58,6 +60,7 @@ namespace Multicalendar {
                 var splash = new Multicalendar.SplashWindow (this);
                 splash.present ();
                 _calendarService.getItems (_dateTime);
+                _monthsService.getItems ();
                 Timeout.add (3000, make_window);
 
 //                win = this.create_window ();
@@ -77,6 +80,12 @@ namespace Multicalendar {
         public Multicalendar.CalendarService calendarService {
             get {
                 return _calendarService;
+            }
+        }
+
+        public Multicalendar.MonthsService monthsService {
+            get {
+                return _monthsService;
             }
         }
 

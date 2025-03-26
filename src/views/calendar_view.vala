@@ -10,6 +10,10 @@ namespace Multicalendar {
 
         const double DSIZE = 460.0;
 
+        const int DIVIDE1 = 50;
+        const int DIVIDE2 = 250;
+        const int DIVIDE3 = 100;
+
         private void draw_func (Gtk.DrawingArea drawing_area,
             Cairo.Context context, int width, int height)
         {
@@ -22,9 +26,9 @@ namespace Multicalendar {
                 int size_cell_width = width / 8;
                 int size_cell_height = height / 8;
 
-	            roundRect(context, color,
+	            roundRectDate(context, color,
 	                size_cell_width * 0, size_cell_height * 0,
-	                size_cell_width * 8, size_cell_height, 10, "Date", true);
+	                size_cell_width * 8, size_cell_height, 10);
 //////// days week
 
                 for(int i = 0;i<_model.shortNameDay.size;i++) {
@@ -112,6 +116,71 @@ namespace Multicalendar {
 //  	        context.move_to (x + width / 2 - 0 * font_size * element.length / 2 , y + height / 2 + font_size / 2);
   	        //context.move_to (x, y + 12);
   	        context.show_text (element);
+  	        context.close_path();
+        }
+
+
+        private void roundRectDate(Cairo.Context context, Gdk.RGBA color,
+            int x, int y, int width, int height, int r)
+        {
+            x++;
+            y++;
+            width--;
+            height--;
+            width--;
+            height--;
+            message(height.to_string());
+            int font_size = height / 3;// 12;
+            context.move_to(x,y+height/2);
+            context.set_line_width(1);
+            context.arc(x+r, y+r, r, Math.PI, 3*Math.PI/2);
+            context.arc(x+width-r, y+r, r, 3*Math.PI/2, 0);
+            context.arc(x+width-r, y+height-r, r, 0, Math.PI/2);
+            context.arc(x+r, y+height-r, r, Math.PI/2, Math.PI);
+            context.close_path();
+
+//            if(highlighter) {
+            context.set_source_rgb (revert(color.red), revert(color.green), revert(color.blue));
+            context.fill_preserve ();
+  //          }
+//            GdkColor gColor = new MyLib.GdkColor.fromHexColor(hColor);
+//	        context.set_source_rgba (gColor.getR(), gColor.getG(), gColor.getB(), gColor.getA());
+	        //context.set_source_rgb (0, 0, 1);
+//	        context.fill_preserve ();
+	        Gdk.cairo_set_source_rgba (context, color);
+	        //context.set_source_rgb(0.5, 0.5, 0.5);
+            context.stroke();
+
+//            context.select_font_face ("Adventure", Cairo.FontSlant.NORMAL, Cairo.FontWeight.BOLD);
+//            context.select_font_face ("MonospaceMono", Cairo.FontSlant.NORMAL, Cairo.FontWeight.BOLD);
+            context.select_font_face ("MonospaceMono", Cairo.FontSlant.NORMAL, Cairo.FontWeight.BOLD);
+    	    context.set_font_size (font_size);
+  	        context.move_to (x + DIVIDE1, y + height / 4 + font_size / 2);
+  	        context.show_text (_model.day + "/ ");
+
+            context.select_font_face (_model.font, Cairo.FontSlant.NORMAL, Cairo.FontWeight.BOLD);
+//    	    context.set_font_size (font_size);
+  	        context.move_to (x + DIVIDE1 + DIVIDE1, y + height / 4 + font_size / 2);
+  	        context.show_text (_model.monthName);
+
+            context.select_font_face ("MonospaceMono", Cairo.FontSlant.NORMAL, Cairo.FontWeight.BOLD);
+//    	    context.set_font_size (font_size);
+  	        context.move_to (x + DIVIDE1 + DIVIDE2, y + height / 4 + font_size / 2);
+  	        context.show_text (" /" + _model.year);
+
+            var app = GLib.Application.get_default();
+            var date = (app as Multicalendar.Application).dateTime;
+            var months = (app as Multicalendar.Application).monthsService;
+            var dateStr = date.get_day_of_month().to_string() + "/" +
+                    months.listMonths[date.get_month() - 1].month;// + "/" +
+                    //date.get_year().to_string();
+
+  	        context.move_to (x + DIVIDE1, y + height / 1.5 + font_size / 2);
+  	        context.show_text (dateStr);
+
+  	        context.move_to (x + DIVIDE1 + DIVIDE2, y + height / 1.5 + font_size / 2);
+  	        context.show_text ("/ " + date.get_year().to_string());
+
   	        context.close_path();
         }
 

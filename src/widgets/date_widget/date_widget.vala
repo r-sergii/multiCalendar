@@ -138,12 +138,13 @@ namespace Multicalendar {
   	        //context.move_to (x, y + 12);
   	        context.show_text (monthTrans);
 
-            context.set_font_size (font_size);
+            context.set_font_size (font_size + 1);
   	        //context.move_to (x + width / 3.25 - font_size / 2, y + height / 2.75 + font_size / 2);
   	        context.move_to (x + width / 3.25 - font_size / 2, y + 44 + font_size / 2); //50
   	        //context.move_to (x, y + 12);
   	        context.show_text (text);
 
+            context.set_font_size (font_size);
   	        //context.move_to (x + width / 3.25 - font_size / 2, y + height / 2.1 + font_size / 2);
   	        context.move_to (x + width / 3.25 - font_size / 2, y + 60 + font_size / 2); //66
   	        //context.move_to (x, y + 12);
