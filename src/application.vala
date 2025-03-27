@@ -4,6 +4,8 @@ namespace Multicalendar {
         public Adw.ColorScheme theme { get; set; }
         private Multicalendar.CalendarService _calendarService;
         private Multicalendar.MonthsService _monthsService;
+        private Multicalendar.DaysService _daysService;
+        private Multicalendar.InfoService _infoService;
 
         private Multicalendar.VertView _vertView;
         private Multicalendar.HorizView _horizView;
@@ -39,6 +41,8 @@ namespace Multicalendar {
             _settingsService = new SettingsService ();
             _calendarService = new CalendarService ();
             _monthsService = new MonthsService ();
+            _daysService = new DaysService ();
+            _infoService = new InfoService ();
         }
 
         public override void activate () {
@@ -65,6 +69,8 @@ namespace Multicalendar {
                 splash.present ();
                 _calendarService.getItems (_dateTime);
                 _monthsService.getItems ();
+                _daysService.getItems ();
+                _infoService.getItems ();
                 Timeout.add (3000, make_window);
 
 //                win = this.create_window ();
@@ -90,6 +96,18 @@ namespace Multicalendar {
         public Multicalendar.MonthsService monthsService {
             get {
                 return _monthsService;
+            }
+        }
+
+        public Multicalendar.DaysService daysService {
+            get {
+                return _daysService;
+            }
+        }
+
+        public Multicalendar.InfoService infoService {
+            get {
+                return _infoService;
             }
         }
 

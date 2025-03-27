@@ -5,6 +5,7 @@ namespace Multicalendar {
         private Adw.ToastOverlay overlay;
         private Adw.Clamp clamp;
         private Gtk.Label labelDate;
+        private Gtk.Expander expanderGregorian;
 
         public InfoView () {
             Object (orientation: Gtk.Orientation.VERTICAL, spacing: 10);
@@ -13,14 +14,34 @@ namespace Multicalendar {
         construct{
             var app = GLib.Application.get_default();
             var months = (app as Multicalendar.Application).monthsService;
+            var days = (app as Multicalendar.Application).daysService;
             var date = (app as Multicalendar.Application).dateTime;
 
             labelDate = new Gtk.Label (date.get_year().to_string() + "/"
                 + date.get_month().to_string() + "/"
                 + date.get_day_of_month().to_string());
 
+            expanderGregorian = new Gtk.Expander ("Gregorian & Julian Calendar");
+//            expanderGregorian = new Gtk.Expander ("<b> Gregorian & Julian Calendar </b>");
+            expanderGregorian.set_use_markup(true);
+            var listGregorian = new Gtk.ListBox ();
+
+            listGregorian.append (new Gtk.Label("Days of the week"));
+            listGregorian.append (new Gtk.Label(""));
+            for(int i=0;i<days.listDays.size;i++) {
+                listGregorian.append (new Gtk.Label(days.listDays[i].day));
+            }
+            listGregorian.append (new Gtk.Label(""));
+            listGregorian.append (new Gtk.Label("Months of the year"));
+            listGregorian.append (new Gtk.Label(""));
+            for(int i=0;i<months.listMonths.size;i++) {
+                listGregorian.append (new Gtk.Label(months.listMonths[i].month));
+            }
+
+            expanderGregorian.set_child (listGregorian);
+
             var listBox = new Gtk.ListBox ();
-            listBox.append (labelDate);
+            listBox.append (expanderGregorian);
 //            listBox.append (centryField);
   //          listBox.append (yearField);
     //        listBox.append (monthField);

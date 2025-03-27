@@ -65,7 +65,7 @@ namespace Multicalendar {
             spinDay.adjustment.value_changed.connect(on_change_day);
 
             comboMonth = new Gtk.ComboBoxText ();
-            for(int i=0;i<12;i++) {
+            for(int i=0;i<months.listMonths.size;i++) {
                 comboMonth.append_text(months.listMonths[i].month);
             }
             comboMonth.set_active((int)(date.get_month() - 1));

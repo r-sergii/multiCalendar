@@ -1,16 +1,16 @@
 namespace Multicalendar {
 
-    class MonthsProvider {
+    class DaysProvider {
         const string baseUrl = "http://192.168.0.103:8070/api/calendar/";
 
         Http.Client http;
 
-        public MonthsProvider() {
+        public DaysProvider() {
             http = new Http.Client();
         }
 
-        public void getItems ( Gee.ArrayList<MonthsModel> listMonths ) {
-            var host = baseUrl + "months/1";
+        public void getItems ( Gee.ArrayList<DaysModel> listDays ) {
+            var host = baseUrl + "days/1";
 
             try {
                 var response = http.get( host );
@@ -24,7 +24,7 @@ namespace Multicalendar {
                     unowned Json.Array arr = node.get_array();
                     int i = 0;
                     foreach(unowned Json.Node item in arr.get_elements ()) {
-                        listMonths.add (new MonthsModel.fromJson (item) );
+                        listDays.add (new DaysModel.fromJson (item) );
 
                         i++;
                         message(i.to_string());
