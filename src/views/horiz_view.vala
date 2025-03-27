@@ -24,6 +24,22 @@ namespace Multicalendar {
         }
 
         public void reset () {
+            foreach(var item in listWidgets) {
+                this.remove (item);
+            }
+            listWidgets.clear ();
+
+            var app = GLib.Application.get_default();
+            var calendarService = (app as Multicalendar.Application).calendarService;
+            var locale = (app as Multicalendar.Application).settingsService.locale;
+
+            for(int i = 0; i < calendarService.listCalendars.size; i++) {
+                var label = new DateWidget(calendarService.listCalendars[i], locale);
+
+                this.append (label);
+                listWidgets.add (label);
+            }
+
 /*
             var app = GLib.Application.get_default();
             var clockService = (app as Multiclock.Application).clockService;

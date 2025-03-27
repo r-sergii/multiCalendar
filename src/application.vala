@@ -85,6 +85,9 @@ namespace Multicalendar {
             get {
                 return _dateTime;
             }
+            set {
+                _dateTime = value;
+            }
         }
 
         public Multicalendar.CalendarService calendarService {
@@ -266,6 +269,26 @@ namespace Multicalendar {
     //        language.show ();
 
             (this.active_window as Multicalendar.MainWindow).applyInfo ();
+        }
+
+        public void on_apply_view () {
+            (this.active_window as Multicalendar.MainWindow).applyView ();
+        }
+
+        public void on_apply_wait () {
+            (this.active_window as Multicalendar.MainWindow).applyWait ();
+            _calendarService.clear ();
+            _calendarService.getItems (_dateTime);
+
+            Timeout.add (2000, reset);
+        }
+
+        private bool reset()
+        {
+            this.vertView.reset();
+            this.horizView.reset();
+            on_apply_view();
+            return false;
         }
 
         private void on_quit () {

@@ -9,6 +9,8 @@ namespace Multicalendar {
         private Gtk.SpinButton spinYear;
         private Gtk.SpinButton spinDay;
         private Gtk.ComboBoxText comboMonth;
+        private Gtk.Button confirm;
+        private Gtk.Button cancel;
         private int centry;
         private int year;
         private int month;
@@ -35,6 +37,23 @@ namespace Multicalendar {
             applyDate();
         }
 
+        private void on_confirm () {
+            var app = GLib.Application.get_default();
+            GLib.DateTime dateTime = new GLib.DateTime (new GLib.TimeZone.local(),
+                    centry * 100 + year, month, day,
+                    0, 0, 0.0);
+            (app as Multicalendar.Application).dateTime = dateTime;
+
+            (app as Multicalendar.Application).on_apply_wait ();
+        }
+
+        private void on_cancel () {
+            var app = GLib.Application.get_default();
+            //(app.active_window as Multicalendar.MainWindow)
+            (app as Multicalendar.Application).on_apply_view ();
+        }
+
+
         construct{
             var app = GLib.Application.get_default();
             var months = (app as Multicalendar.Application).monthsService;
@@ -44,6 +63,20 @@ namespace Multicalendar {
             year = date.get_year() - (int)Math.round(date.get_year() / 100) * 100 ;
             day = date.get_day_of_month();
             month = (int)(date.get_month() - 1);
+
+            confirm = new Gtk.Button();
+            var aconfirm = new Adw.ButtonContent();
+            aconfirm.set_icon_name ("ok128");
+            aconfirm.set_label ("OK");
+            confirm.set_child (aconfirm);
+            confirm.clicked.connect (on_confirm);
+
+            cancel = new Gtk.Button();
+            var acancel = new Adw.ButtonContent();
+            acancel.set_icon_name ("cancel128");
+            acancel.set_label ("Cancel");
+            cancel.set_child (acancel);
+            cancel.clicked.connect (on_cancel);
 
             labelDate = new Gtk.Label (date.get_year().to_string() + "/"
                 + date.get_month().to_string() + "/"
@@ -106,12 +139,20 @@ namespace Multicalendar {
             dayField.append (labelDay);
             dayField.append (spinDay);
 
+            var buttonField = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+            buttonField.set_halign(Gtk.Align.CENTER);
+            buttonField.set_valign(Gtk.Align.CENTER);
+            buttonField.spacing = 100;
+            buttonField.append (confirm);
+            buttonField.append (cancel);
+
             var listBox = new Gtk.ListBox ();
             listBox.append (dateField);
             listBox.append (centryField);
             listBox.append (yearField);
             listBox.append (monthField);
             listBox.append (dayField);
+            listBox.append (buttonField);
 
             clamp = new Adw.Clamp ();
             clamp.tightening_threshold = 100;

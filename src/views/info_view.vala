@@ -15,12 +15,13 @@ namespace Multicalendar {
             var app = GLib.Application.get_default();
             var months = (app as Multicalendar.Application).monthsService;
             var days = (app as Multicalendar.Application).daysService;
+            var info = (app as Multicalendar.Application).infoService;
             var date = (app as Multicalendar.Application).dateTime;
 
             labelDate = new Gtk.Label (date.get_year().to_string() + "/"
                 + date.get_month().to_string() + "/"
                 + date.get_day_of_month().to_string());
-
+/*
             expanderGregorian = new Gtk.Expander ("Gregorian & Julian Calendar");
 //            expanderGregorian = new Gtk.Expander ("<b> Gregorian & Julian Calendar </b>");
             expanderGregorian.set_use_markup(true);
@@ -39,9 +40,33 @@ namespace Multicalendar {
             }
 
             expanderGregorian.set_child (listGregorian);
-
+*/
             var listBox = new Gtk.ListBox ();
-            listBox.append (expanderGregorian);
+
+            for(int i=0;i<info.listInfo.size;i++) {
+                var expander = expanderGregorian = new Gtk.Expander (info.listInfo[i].calendar);
+                expander.set_use_markup(true);
+                var list = new Gtk.ListBox ();
+
+                list.append (new Gtk.Label("Days of the week"));
+                list.append (new Gtk.Label(""));
+                for(int j=0;j<info.listInfo[i].day.size;j++) {
+                    list.append (new Gtk.Label(info.listInfo[i].day[j]));// + " : "
+                        //+ info.listInfo[i].dayTranslate[j]));
+                }
+                list.append (new Gtk.Label(""));
+                list.append (new Gtk.Label("Months of the year"));
+                list.append (new Gtk.Label(""));
+                for(int l=0;l<info.listInfo[i].month.size;l++) {
+                    list.append (new Gtk.Label(info.listInfo[i].month[l]));
+                }
+
+                expander.set_child (list);
+                listBox.append (expander);
+            }
+
+
+            //listBox.append (expanderGregorian);
 //            listBox.append (centryField);
   //          listBox.append (yearField);
     //        listBox.append (monthField);

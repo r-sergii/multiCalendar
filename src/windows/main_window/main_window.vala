@@ -20,7 +20,7 @@ namespace Multicalendar {
         private Multicalendar.CalendarView calendarView;
         private Multicalendar.DateChangeView dateChangeView;
         private Multicalendar.InfoView infoView;
-//        private Multicalendar.WaitView waitView;
+        private Multicalendar.WaitView waitView;
         private bool isVert;
         private Gtk.ScrolledWindow scroll;
 
@@ -90,7 +90,7 @@ namespace Multicalendar {
             calendarView = new CalendarView ();
             dateChangeView = new DateChangeView ();
             infoView = new InfoView ();
-            //waitView = new WaitView ();
+            waitView = new WaitView ();
             var app = GLib.Application.get_default();
 
             (app as Multicalendar.Application).vertView = vertView;
@@ -124,6 +124,12 @@ namespace Multicalendar {
             back_button.visible = true;
         }
 
+        public void applyWait () {
+            scroll.set_child (waitView);
+            menu_button.visible = false;
+            back_button.visible = true;
+        }
+
         private void on_apply_view () {
             applyView ();
         }
@@ -142,7 +148,8 @@ namespace Multicalendar {
             }
         }
 
-        private void applyView () {
+        //private
+        public void applyView () {
             back_button.visible = false;
             menu_button.visible = true;
             this.set_title ("multiCalendar");

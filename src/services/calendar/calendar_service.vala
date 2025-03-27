@@ -12,5 +12,9 @@ namespace Multicalendar {
             calendarProvider.getItems ( listCalendars, _value );
 //            message (listCalendars.size.to_string ());
         }
+
+        public void clear () {
+            listCalendars.clear ();
+        }
     }
 }
