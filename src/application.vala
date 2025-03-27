@@ -17,12 +17,16 @@ namespace Multicalendar {
 
         construct {
             ActionEntry[] action_entries = {
+                { "info", this.on_info_action },
+                { "datechange", this.on_datechange_action },
                 { "language", this.on_language_action },
                 { "about", this.on_about_action },
                 { "preferences", this.on_preferences_action },
                 { "quit", this.on_quit }
             };
             this.add_action_entries (action_entries, this);
+            this.set_accels_for_action ("app.info", {"<primary>i"});
+            this.set_accels_for_action ("app.datechange", {"<primary>d"});
             this.set_accels_for_action ("app.language", {"<primary>l"});
             this.set_accels_for_action ("app.about", {"<primary>a"});
             this.set_accels_for_action ("app.quit", {"<primary>q"});
@@ -224,6 +228,26 @@ namespace Multicalendar {
             language.show ();
 
 //            (this.active_window as Multiclock.MainWindow).init_menu ();
+        }
+
+        private void on_datechange_action () {
+            message ("date change action show activated");
+
+//            var language = new Multicalendar.LanguageWindow (this.active_window as Multicalendar.MainWindow);
+  //          language.set_transient_for (this.active_window);
+    //        language.show ();
+
+            (this.active_window as Multicalendar.MainWindow).applyDateChange ();
+        }
+
+        private void on_info_action () {
+            message ("info action show activated");
+
+//            var language = new Multicalendar.LanguageWindow (this.active_window as Multicalendar.MainWindow);
+  //          language.set_transient_for (this.active_window);
+    //        language.show ();
+
+            (this.active_window as Multicalendar.MainWindow).applyInfo ();
         }
 
         private void on_quit () {

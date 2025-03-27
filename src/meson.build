@@ -7,6 +7,8 @@ multicalendar_sources = [
   'views/vert_view.vala',
   'views/horiz_view.vala',
   'views/calendar_view.vala',
+  'views/datechange_view.vala',
+  'views/info_view.vala',
   'views/wait_view.vala',
   'widgets/theme_switcher/theme_switcher.vala',
   'widgets/circular-progress-bar/procent-progress-bar.vala',
@@ -53,6 +55,7 @@ multicalendar_sources += gnome.compile_resources('multicalendar-resources',
 )
 
 executable('multicalendar', multicalendar_sources,
+	link_args: '-lm',
   vala_args: '--target-glib=2.50',  dependencies: multicalendar_deps,
   install: true,
 )

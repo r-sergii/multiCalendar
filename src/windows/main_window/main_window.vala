@@ -18,6 +18,8 @@ namespace Multicalendar {
         private Multicalendar.VertView vertView;
         private Multicalendar.HorizView horizView;
         private Multicalendar.CalendarView calendarView;
+        private Multicalendar.DateChangeView dateChangeView;
+        private Multicalendar.InfoView infoView;
 //        private Multicalendar.WaitView waitView;
         private bool isVert;
         private Gtk.ScrolledWindow scroll;
@@ -39,6 +41,8 @@ namespace Multicalendar {
             item_theme.set_attribute ("custom", "s", "theme");
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //            var item_preferences = new GLib.MenuItem (_("Preferences"), "app.preferences");
+            var item_info = new GLib.MenuItem (_("Info"), "app.info");
+            var item_datechange = new GLib.MenuItem (_("Date Change"), "app.datechange");
             var item_language = new GLib.MenuItem (_(locale.language), "app.language");
 
             var item_about = new GLib.MenuItem (_(locale.about +" multiCalendar"), "app.about");
@@ -48,6 +52,8 @@ namespace Multicalendar {
 
             menu.append_item (item_theme);
 //            menu.append_item (item_preferences);
+            menu.append_item (item_datechange);
+            menu.append_item (item_info);
             menu.append_item (item_language);
 
             menu.append_item (item_about);
@@ -82,6 +88,8 @@ namespace Multicalendar {
             vertView = new VertView ();
             horizView = new HorizView ();
             calendarView = new CalendarView ();
+            dateChangeView = new DateChangeView ();
+            infoView = new InfoView ();
             //waitView = new WaitView ();
             var app = GLib.Application.get_default();
 
@@ -97,6 +105,21 @@ namespace Multicalendar {
             var locale = (app as Multicalendar.Application).settingsService.locale;
             this.set_title (calendarView.calendarModel.calendar + " " + locale.calendar);
             scroll.set_child (calendarView);
+            menu_button.visible = false;
+            back_button.visible = true;
+        }
+
+        public void applyDateChange () {
+//            var app = GLib.Application.get_default();
+  //          var locale = (app as Multicalendar.Application).settingsService.locale;
+    //        this.set_title (calendarView.calendarModel.calendar + " " + locale.calendar);
+            scroll.set_child (dateChangeView);
+            menu_button.visible = false;
+            back_button.visible = true;
+        }
+
+        public void applyInfo () {
+            scroll.set_child (infoView);
             menu_button.visible = false;
             back_button.visible = true;
         }

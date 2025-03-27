@@ -51,6 +51,14 @@
       </item>
 -->
       <item>
+        <attribute name="label" translatable="yes">_Date Change</attribute>
+        <attribute name="action">app.datechange</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Info</attribute>
+        <attribute name="action">app.info</attribute>
+      </item>
+      <item>
         <attribute name="label" translatable="yes">_Language</attribute>
         <attribute name="action">app.language</attribute>
       </item>
