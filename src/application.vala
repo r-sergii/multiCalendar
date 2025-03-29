@@ -6,6 +6,7 @@ namespace Multicalendar {
         private Multicalendar.MonthsService _monthsService;
         private Multicalendar.DaysService _daysService;
         private Multicalendar.InfoService _infoService;
+        private Multicalendar.WikiService _wikiService;
 
         private Multicalendar.VertView _vertView;
         private Multicalendar.HorizView _horizView;
@@ -43,6 +44,7 @@ namespace Multicalendar {
             _monthsService = new MonthsService ();
             _daysService = new DaysService ();
             _infoService = new InfoService ();
+            _wikiService = new WikiService ();
         }
 
         public override void activate () {
@@ -71,6 +73,7 @@ namespace Multicalendar {
                 _monthsService.getItems ();
                 _daysService.getItems ();
                 _infoService.getItems ();
+                _wikiService.getItems ("en");
                 Timeout.add (3000, make_window);
 
 //                win = this.create_window ();
