@@ -12,6 +12,8 @@ namespace Multicalendar {
         private unowned Gtk.MenuButton menu_button;
         [GtkChild]
         private unowned Gtk.Button back_button;
+        [GtkChild]
+        private unowned Gtk.Button question_button;
 //        [GtkChild]
   //      private unowned Adw.MenuButton open_button;
 
@@ -74,6 +76,7 @@ namespace Multicalendar {
             init_menu ();
 
             back_button.clicked.connect (on_apply_view);
+            question_button.clicked.connect (on_call_wiki);
 
             css_provider = new Gtk.CssProvider();
             css_provider.load_from_resource("/io/github/r_sergii/multiCalendar/date_widget.css");
@@ -107,6 +110,7 @@ namespace Multicalendar {
             scroll.set_child (calendarView);
             menu_button.visible = false;
             back_button.visible = true;
+            question_button.visible = true;
         }
 
         public void applyDateChange () {
@@ -116,22 +120,40 @@ namespace Multicalendar {
             scroll.set_child (dateChangeView);
             menu_button.visible = false;
             back_button.visible = true;
+            question_button.visible = true;
         }
 
         public void applyInfo () {
             scroll.set_child (infoView);
             menu_button.visible = false;
             back_button.visible = true;
+            question_button.visible = true;
         }
 
         public void applyWait () {
             scroll.set_child (waitView);
             menu_button.visible = false;
             back_button.visible = true;
+            question_button.visible = true;
         }
 
         private void on_apply_view () {
             applyView ();
+        }
+
+        private void on_call_wiki () {
+            var app = GLib.Application.get_default();
+            var wiki = (app as Multicalendar.Application).wikiService;
+
+            var browser = new BrowserWindow(
+            wiki.listWiki[0].wiki, wiki.listWiki[0].nname);
+//            elementService.listElements[nomer - 1].wiki,
+  //              elementService.listElements[nomer - 1].symbol + " : "
+    //            + elementService.listElements[nomer - 1].latin_name);
+            browser.show();
+
+            var progress = new Multicalendar.ProgressWidget (app as Multicalendar.Application);
+            progress.present ();
         }
 
         public Multicalendar.CalendarModel model {
@@ -151,6 +173,7 @@ namespace Multicalendar {
         //private
         public void applyView () {
             back_button.visible = false;
+            question_button.visible = false;
             menu_button.visible = true;
             this.set_title ("multiCalendar");
             if (windowHeight >= windowWidth) {

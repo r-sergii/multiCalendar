@@ -4,6 +4,7 @@ multicalendar_sources = [
   'windows/splash_window/splash_window.vala',
   'windows/language_window/language_window.vala',
   'windows/no_connect_window/no_connect_window.vala',
+  'windows/browser_window/browser_window.vala',
   'views/vert_view.vala',
   'views/horiz_view.vala',
   'views/calendar_view.vala',
@@ -15,6 +16,7 @@ multicalendar_sources = [
   'widgets/circular-progress-bar/circular-progress-bar.vala',
   'widgets/circular-progress-bar/circle-indicator.vala',
   'widgets/date_widget/date_widget.vala',
+  'widgets/progress_widget/progress_widget.vala',
   'services/calendar/calendar_service.vala',
   'services/calendar/calendar_provider.vala',
   'services/calendar/calendar_model.vala',
@@ -51,9 +53,10 @@ multicalendar_deps = [
   dependency('libadwaita-1', version: '>= 1.0'),
   dependency('gio-2.0'),
   dependency('gee-0.8'),
-  dependency('json-glib-1.0')
+  dependency('json-glib-1.0'),
 #  dependency('pango', version: '>= 1.0'),
 #  dependency('pangocairo', version: '>= 1.0')
+  dependency('webkitgtk-6.0')
 ]
 
 gnome = import('gnome')

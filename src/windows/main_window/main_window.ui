@@ -12,6 +12,11 @@
           </object>
         </child>
         <child type="end">
+          <object class="GtkButton" id="question_button">
+            <property name="icon-name">question_mark</property>
+          </object>
+        </child>
+        <child type="end">
           <object class="GtkMenuButton" id="menu_button">
             <property name="icon-name">open-menu-symbolic</property>
             <property name="menu-model">primary_menu</property>

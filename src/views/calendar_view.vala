@@ -3,8 +3,12 @@ namespace Multicalendar {
     class CalendarView : Gtk.DrawingArea
     {
         private Multicalendar.CalendarModel _model;
+//        private Gdk.Pixbuf pixbuf;
 
         public CalendarView () {
+//            pixbuf
+  //              = new Gdk.Pixbuf.from_resource_at_scale ( "/io/github/r_sergii/multiCalendar/image/question128.svg",
+    //            40, 40, true);
             set_draw_func(draw_func);
         }
 
@@ -29,6 +33,11 @@ namespace Multicalendar {
 	            roundRectDate(context, color,
 	                size_cell_width * 0, size_cell_height * 0,
 	                size_cell_width * 8, size_cell_height, 10);
+
+//	            roundRectInfo(context, color,
+	//                size_cell_width * 0, size_cell_height * 1,
+	  //              size_cell_width, size_cell_height, 10);
+
 //////// days week
 
                 for(int i = 0;i<_model.shortNameDay.size;i++) {
@@ -221,6 +230,49 @@ namespace Multicalendar {
   	        context.close_path();
         }
 
+        private void roundRectInfo(Cairo.Context context, Gdk.RGBA color,
+            int x, int y, int width, int height, int r)
+        {
+            double sizePixbuf = double.min(width, height);
+            x++;
+            y++;
+            width--;
+            height--;
+            width--;
+            height--;
+            message(height.to_string());
+            int font_size = height / 3;// 12;
+            context.move_to(x,y+height/2);
+            context.set_line_width(1);
+            context.arc(x+r, y+r, r, Math.PI, 3*Math.PI/2);
+            context.arc(x+width-r, y+r, r, 3*Math.PI/2, 0);
+            context.arc(x+width-r, y+height-r, r, 0, Math.PI/2);
+            context.arc(x+r, y+height-r, r, Math.PI/2, Math.PI);
+            context.close_path();
+
+//            context.set_source_rgb (revert(color.red), revert(color.green), revert(color.blue));
+  //          context.fill_preserve ();
+
+	        Gdk.cairo_set_source_rgba (context, color);
+	        //context.set_source_rgb(0.5, 0.5, 0.5);
+            context.stroke();
+  	       	context.close_path();
+
+  	       	// show question icon
+
+  	       	var pixbuf
+                = new Gdk.Pixbuf.from_resource_at_scale ( "/io/github/r_sergii/multiCalendar/image/question128.svg",
+                (int)(sizePixbuf / 2), (int)(sizePixbuf / 2), true);
+
+            Gdk.cairo_set_source_pixbuf(context, pixbuf,
+                x + width / 2 - (sizePixbuf / 2) + 20,
+                y + height / 2 - (sizePixbuf / 2) + 20);
+            context.rectangle (
+                x + width / 2 - (sizePixbuf / 2) + 0,
+                y + height / 2 - (sizePixbuf / 2) + 0,
+                pixbuf.get_width() + 20, pixbuf.get_height() + 20);
+            context.fill();
+        }
 
         private double revert(double value) {
             if (value == 1) {

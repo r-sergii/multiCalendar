@@ -117,6 +117,12 @@ namespace Multicalendar {
             }
         }
 
+        public Multicalendar.WikiService wikiService {
+            get {
+                return _wikiService;
+            }
+        }
+
         public Multicalendar.VertView vertView {
             get {
                 return _vertView;
