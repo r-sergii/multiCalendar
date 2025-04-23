@@ -1,6 +1,7 @@
 namespace Multicalendar {
 
     public abstract class CalendarField {
+        public const string id = "id";
         public const string calendar = "calendar";
         public const string image = "image";
         public const string font = "font";
@@ -22,6 +23,7 @@ namespace Multicalendar {
     }
 
     public class CalendarModel {
+        public int64 id;
         public string calendar;
         public string image;
         public string font;
@@ -43,7 +45,7 @@ namespace Multicalendar {
         //public Gtk.StringList shortNameDay;
         //public Json.Array shortNameDay;
 
-        public CalendarModel(string _calendar, string _image, string _font,
+        public CalendarModel(int64 _id, string _calendar, string _image, string _font,
                         string _year, string _month, string _day,
                         string _week, string _dayOfYear, string _daysInYear, string _daysInMonth,
                         string _isLeap,
@@ -54,6 +56,7 @@ namespace Multicalendar {
                         //Gtk.StringList _shortNameDay)
                         //Json.Array _shortNameDay)
         {
+            id = _id;
             calendar = _calendar;
             image = _image;
             font = _font;
@@ -82,6 +85,11 @@ namespace Multicalendar {
             Json.Object obj = item.get_object ();
             foreach(unowned string name in obj.get_members ()) {
                 switch(name) {
+                    case CalendarField.id:
+                        unowned Json.Node it = obj.get_member (name);
+                        id = obj.get_int_member (CalendarField.id);
+                        message (id.to_string());
+                        break;
                     case CalendarField.calendar:
                         unowned Json.Node it = obj.get_member (name);
                         calendar = obj.get_string_member (CalendarField.calendar);

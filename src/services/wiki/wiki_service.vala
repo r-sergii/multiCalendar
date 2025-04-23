@@ -11,5 +11,14 @@ namespace Multicalendar {
             var wikiProvider = new WikiProvider ();
             wikiProvider.getItems ( listWiki, locale );
         }
+
+        public WikiModel getByIndex (int64 id) {
+            for(int i = 0;i<listWiki.size;i++) {
+                if(id == listWiki[i].id) {
+                    return listWiki[i];
+                }
+            }
+            return new WikiModel(0,0,"","");
+        }
     }
 }

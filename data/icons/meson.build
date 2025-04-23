@@ -20,6 +20,7 @@ circle_circle_id = 'circle_circle128'
 user_id = 'user128'
 question_id = 'question128'
 question_mark_id = 'question_mark'
+petals_id = 'petals128'
 
 scalable_dir = join_paths('hicolor', 'scalable', 'apps')
 install_data(
@@ -45,6 +46,7 @@ install_data(
   join_paths(scalable_dir, ('@0@.svg').format(user_id)),
   join_paths(scalable_dir, ('@0@.svg').format(question_id)),
   join_paths(scalable_dir, ('@0@.svg').format(question_mark_id)),
+  join_paths(scalable_dir, ('@0@.svg').format(petals_id)),
   install_dir: join_paths(get_option('datadir'), 'icons', scalable_dir)
 )
 

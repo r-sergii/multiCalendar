@@ -1,12 +1,15 @@
 namespace Multicalendar {
 
     class DaysProvider {
-        const string baseUrl = "http://192.168.0.103:8070/api/calendar/";
+        //const
+        string baseUrl;// = "http://192.168.0.105:8070/api/calendar/";
 
         Http.Client http;
 
         public DaysProvider() {
             http = new Http.Client();
+            var app = GLib.Application.get_default();
+            baseUrl = (app as Multicalendar.Application).baseUrl;
         }
 
         public void getItems ( Gee.ArrayList<DaysModel> listDays ) {

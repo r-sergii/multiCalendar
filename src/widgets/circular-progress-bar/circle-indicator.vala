@@ -11,8 +11,9 @@ namespace ProgressWidgets {
         {
             w_pix = w;
             h_pix = h;
-            string _svg = "/io/github/r_sergii/multiCalendar/image/circle_indicator128.svg";
+            //string _svg = "/io/github/r_sergii/multiCalendar/image/circle_indicator128.svg";
             //string _svg = "/io/github/r_sergii/multiCalendar/image/circle_circle128.svg";
+            string _svg = "/io/github/r_sergii/multiCalendar/image/petals128.svg";
             pixbuf = new Gdk.Pixbuf.from_resource ( _svg );
             angle = 0;
 

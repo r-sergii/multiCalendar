@@ -16,6 +16,11 @@ namespace Multicalendar {
         private int month;
         private int day;
 
+        private Gtk.SpinButton spin4;
+        private Gtk.SpinButton spin3;
+        private Gtk.SpinButton spin2;
+        private Gtk.SpinButton spin1;
+
         public DateChangeView () {
             Object (orientation: Gtk.Orientation.VERTICAL, spacing: 10);
         }
@@ -93,6 +98,19 @@ namespace Multicalendar {
             spinYear.value = date.get_year() - Math.round(date.get_year() / 100) * 100 ;
             spinDay.value = date.get_day_of_month();
 
+            spin4 = new Gtk.SpinButton.with_range(0,9,1);
+            spin3 = new Gtk.SpinButton.with_range(0,9,1);
+            spin2 = new Gtk.SpinButton.with_range(0,9,1);
+            spin1 = new Gtk.SpinButton.with_range(0,9,1);
+            spin4.set_orientation (Gtk.Orientation.VERTICAL);
+            spin3.set_orientation (Gtk.Orientation.VERTICAL);
+            spin2.set_orientation (Gtk.Orientation.VERTICAL);
+            spin1.set_orientation (Gtk.Orientation.VERTICAL);
+            spin4.value = 2;
+            spin3.value = 0;
+            spin2.value = 2;
+            spin1.value = 5;
+
             spinCentry.adjustment.value_changed.connect(on_change_day);
             spinYear.adjustment.value_changed.connect(on_change_day);
             spinDay.adjustment.value_changed.connect(on_change_day);
@@ -109,6 +127,16 @@ namespace Multicalendar {
             dateField.set_halign(Gtk.Align.CENTER);
             dateField.set_valign(Gtk.Align.CENTER);
             dateField.append (labelDate);
+
+            var yField = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+            yField.set_halign(Gtk.Align.CENTER);
+            yField.set_valign(Gtk.Align.CENTER);
+            yField.spacing = 10;
+            yField.append (labelYear);
+            yField.append (spin4);
+            yField.append (spin3);
+            yField.append (spin2);
+            yField.append (spin1);
 
             var centryField = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
             //centryField.halign = Gtk.Align.CENTER;
@@ -148,6 +176,7 @@ namespace Multicalendar {
 
             var listBox = new Gtk.ListBox ();
             listBox.append (dateField);
+            listBox.append (yField);
             listBox.append (centryField);
             listBox.append (yearField);
             listBox.append (monthField);

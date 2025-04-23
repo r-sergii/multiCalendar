@@ -100,6 +100,7 @@ namespace Multicalendar {
             (app as Multicalendar.Application).horizView = horizView;
 
             applyView ();
+//            applyWait ();
             mainBox.append (scroll);
         }
 
@@ -120,14 +121,14 @@ namespace Multicalendar {
             scroll.set_child (dateChangeView);
             menu_button.visible = false;
             back_button.visible = true;
-            question_button.visible = true;
+            question_button.visible = false;//true;
         }
 
         public void applyInfo () {
             scroll.set_child (infoView);
             menu_button.visible = false;
             back_button.visible = true;
-            question_button.visible = true;
+            question_button.visible = false;//true;
         }
 
         public void applyWait () {
@@ -144,9 +145,14 @@ namespace Multicalendar {
         private void on_call_wiki () {
             var app = GLib.Application.get_default();
             var wiki = (app as Multicalendar.Application).wikiService;
+            var model = this.model;
+            message(model.id.to_string());
+            var wikiModel = wiki.getByIndex (model.id);
 
             var browser = new BrowserWindow(
-            wiki.listWiki[0].wiki, wiki.listWiki[0].nname);
+            wikiModel.wiki, wikiModel.nname);
+//            wiki.listWiki[0].wiki, wiki.listWiki[0].nname);
+
 //            elementService.listElements[nomer - 1].wiki,
   //              elementService.listElements[nomer - 1].symbol + " : "
     //            + elementService.listElements[nomer - 1].latin_name);

@@ -1,12 +1,15 @@
 namespace Multicalendar {
 
     class WikiProvider {
-        const string baseUrl = "https://multiapps-seven.vercel.app/api/calendarwiki/lang/";
+        //const
+        string baseUrl;// = "https://multiapps-seven.vercel.app/api/calendarwiki/lang/";
 
         Http.Client http;
 
         public WikiProvider() {
             http = new Http.Client();
+            var app = GLib.Application.get_default();
+            baseUrl = (app as Multicalendar.Application).baseUrl;
         }
 
         public void getItems ( Gee.ArrayList<WikiModel> listWiki, string locale ) {

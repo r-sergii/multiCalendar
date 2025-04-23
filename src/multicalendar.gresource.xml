@@ -24,5 +24,6 @@
     <file>image/circle_indicator128.svg</file>
     <file>image/circle_circle128.svg</file>
     <file>image/question128.svg</file>
+    <file>image/petals128.svg</file>
   </gresource>
 </gresources>

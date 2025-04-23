@@ -1,6 +1,8 @@
 namespace Multicalendar {
     public class Application : Adw.Application {
 
+        public string baseUrl = "http://192.168.0.105:8070/api/calendar/";
+
         public Adw.ColorScheme theme { get; set; }
         private Multicalendar.CalendarService _calendarService;
         private Multicalendar.MonthsService _monthsService;
@@ -289,6 +291,7 @@ namespace Multicalendar {
             _calendarService.clear ();
             _calendarService.getItems (_dateTime);
 
+//            reset.begin();
             Timeout.add (2000, reset);
         }
 
