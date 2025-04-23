@@ -11,6 +11,7 @@ multicalendar_sources = [
   'views/datechange_view.vala',
   'views/info_view.vala',
   'views/wait_view.vala',
+  'views/await_view.vala',
   'widgets/theme_switcher/theme_switcher.vala',
   'widgets/circular-progress-bar/procent-progress-bar.vala',
   'widgets/circular-progress-bar/circular-progress-bar.vala',

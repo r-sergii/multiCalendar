@@ -5,13 +5,13 @@ namespace Multicalendar {
         private Adw.ToastOverlay overlay;
         private Adw.Clamp clamp;
         private Gtk.Label labelDate;
-        private Gtk.SpinButton spinCentry;
-        private Gtk.SpinButton spinYear;
+//        private Gtk.SpinButton spinCentry;
+  //      private Gtk.SpinButton spinYear;
         private Gtk.SpinButton spinDay;
         private Gtk.ComboBoxText comboMonth;
         private Gtk.Button confirm;
         private Gtk.Button cancel;
-        private int centry;
+//        private int centry;
         private int year;
         private int month;
         private int day;
@@ -29,14 +29,15 @@ namespace Multicalendar {
 //            labelDate.set_text (date.get_year().to_string() + "/"
   //              + date.get_month().to_string() + "/"
     //            + date.get_day_of_month().to_string());
-            labelDate.set_text (centry.to_string() + year.to_string() + "/"
+            labelDate.set_text (//centry.to_string() +
+                year.to_string() + "/"
                 + month.to_string() + "/"
                 + day.to_string());
         }
 
         private void on_change_day () {
-            centry = (int)spinCentry.value;
-            year = (int)spinYear.value;
+//            centry = (int)spinCentry.value;
+            year = (int)(spin4.value * 1000 + spin3.value * 100 + spin2.value * 10 + spin1.value);
             month = comboMonth.get_active() + 1;
             day = (int)spinDay.value;
             applyDate();
@@ -45,7 +46,8 @@ namespace Multicalendar {
         private void on_confirm () {
             var app = GLib.Application.get_default();
             GLib.DateTime dateTime = new GLib.DateTime (new GLib.TimeZone.local(),
-                    centry * 100 + year, month, day,
+                    //centry * 100 +
+                    year, month, day,
                     0, 0, 0.0);
             (app as Multicalendar.Application).dateTime = dateTime;
 
@@ -64,8 +66,8 @@ namespace Multicalendar {
             var months = (app as Multicalendar.Application).monthsService;
             var date = (app as Multicalendar.Application).dateTime;
 
-            centry = (int)Math.round(date.get_year() / 100);
-            year = date.get_year() - (int)Math.round(date.get_year() / 100) * 100 ;
+//            centry = (int)Math.round(date.get_year() / 100);
+  //          year = date.get_year() - (int)Math.round(date.get_year() / 100) * 100 ;
             day = date.get_day_of_month();
             month = (int)(date.get_month() - 1);
 
@@ -86,16 +88,16 @@ namespace Multicalendar {
             labelDate = new Gtk.Label (date.get_year().to_string() + "/"
                 + date.get_month().to_string() + "/"
                 + date.get_day_of_month().to_string());
-            var labelCentry = new Gtk.Label ("Cenrty :");
+//            var labelCentry = new Gtk.Label ("Cenrty :");
             var labelYear = new Gtk.Label ("Year :");
             var labelMonth = new Gtk.Label ("Month :");
             var labelDay = new Gtk.Label ("Day :");
-            spinCentry = new Gtk.SpinButton.with_range(0,99,1);
-            spinYear = new Gtk.SpinButton.with_range(0,99,1);
+//            spinCentry = new Gtk.SpinButton.with_range(0,99,1);
+//            spinYear = new Gtk.SpinButton.with_range(0,99,1);
             spinDay = new Gtk.SpinButton.with_range(1,30,1);
 
-            spinCentry.value = (int)Math.round(date.get_year() / 100);
-            spinYear.value = date.get_year() - Math.round(date.get_year() / 100) * 100 ;
+//            spinCentry.value = (int)Math.round(date.get_year() / 100);
+//            spinYear.value = date.get_year() - Math.round(date.get_year() / 100) * 100 ;
             spinDay.value = date.get_day_of_month();
 
             spin4 = new Gtk.SpinButton.with_range(0,9,1);
@@ -106,13 +108,48 @@ namespace Multicalendar {
             spin3.set_orientation (Gtk.Orientation.VERTICAL);
             spin2.set_orientation (Gtk.Orientation.VERTICAL);
             spin1.set_orientation (Gtk.Orientation.VERTICAL);
-            spin4.value = 2;
-            spin3.value = 0;
-            spin2.value = 2;
-            spin1.value = 5;
 
-            spinCentry.adjustment.value_changed.connect(on_change_day);
-            spinYear.adjustment.value_changed.connect(on_change_day);
+            string sYear = date.get_year().to_string();
+            message(sYear);
+            message(sYear.length.to_string());
+            message(sYear.substring(2,1));
+            if(sYear.length > 3) {
+                spin4.value = int.parse(sYear.substring(0,1));
+                spin3.value = int.parse(sYear.substring(1,1));
+                spin2.value = int.parse(sYear.substring(2,1));
+                spin1.value = int.parse(sYear.substring(3,1));
+            }
+            else if(sYear.length > 3) {
+                spin4.value = 0;
+                spin3.value = int.parse(sYear.substring(0,1));
+                spin2.value = int.parse(sYear.substring(1,1));
+                spin1.value = int.parse(sYear.substring(2,1));
+            }
+            else if(sYear.length > 2) {
+                spin4.value = 0;
+                spin3.value = 0;
+                spin2.value = int.parse(sYear.substring(0,1));
+                spin1.value = int.parse(sYear.substring(1,1));
+            }
+            else if(sYear.length > 1) {
+                spin4.value = 0;
+                spin3.value = 0;
+                spin2.value = 0;
+                spin1.value = int.parse(sYear.substring(0,1));
+            }
+            else {
+                spin4.value = 0;
+                spin3.value = 0;
+                spin2.value = 0;
+                spin1.value = 1;
+            }
+
+//            spinCentry.adjustment.value_changed.connect(on_change_day);
+//            spinYear.adjustment.value_changed.connect(on_change_day);
+            spin4.adjustment.value_changed.connect(on_change_day);
+            spin3.adjustment.value_changed.connect(on_change_day);
+            spin2.adjustment.value_changed.connect(on_change_day);
+            spin1.adjustment.value_changed.connect(on_change_day);
             spinDay.adjustment.value_changed.connect(on_change_day);
 
             comboMonth = new Gtk.ComboBoxText ();
@@ -137,7 +174,7 @@ namespace Multicalendar {
             yField.append (spin3);
             yField.append (spin2);
             yField.append (spin1);
-
+/*
             var centryField = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
             //centryField.halign = Gtk.Align.CENTER;
             centryField.set_halign(Gtk.Align.CENTER);
@@ -152,7 +189,7 @@ namespace Multicalendar {
             yearField.spacing = 100;
             yearField.append (labelYear);
             yearField.append (spinYear);
-
+*/
             var monthField = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
             monthField.set_halign(Gtk.Align.CENTER);
             monthField.set_valign(Gtk.Align.CENTER);
@@ -177,8 +214,8 @@ namespace Multicalendar {
             var listBox = new Gtk.ListBox ();
             listBox.append (dateField);
             listBox.append (yField);
-            listBox.append (centryField);
-            listBox.append (yearField);
+//            listBox.append (centryField);
+  //          listBox.append (yearField);
             listBox.append (monthField);
             listBox.append (dayField);
             listBox.append (buttonField);

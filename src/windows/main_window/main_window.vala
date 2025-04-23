@@ -22,7 +22,8 @@ namespace Multicalendar {
         private Multicalendar.CalendarView calendarView;
         private Multicalendar.DateChangeView dateChangeView;
         private Multicalendar.InfoView infoView;
-        private Multicalendar.WaitView waitView;
+//        private Multicalendar.WaitView waitView;
+        private Multicalendar.AwaitView waitView;
         private bool isVert;
         private Gtk.ScrolledWindow scroll;
 
@@ -93,14 +94,15 @@ namespace Multicalendar {
             calendarView = new CalendarView ();
             dateChangeView = new DateChangeView ();
             infoView = new InfoView ();
-            waitView = new WaitView ();
+//            waitView = new WaitView ();
+            waitView = new AwaitView ();
             var app = GLib.Application.get_default();
 
             (app as Multicalendar.Application).vertView = vertView;
             (app as Multicalendar.Application).horizView = horizView;
 
-            applyView ();
-//            applyWait ();
+//            applyView ();
+            applyWait ();
             mainBox.append (scroll);
         }
 
