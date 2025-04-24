@@ -26,7 +26,8 @@ namespace Multicalendar {
                 + temp.close + ";" + temp.choose_lang + ";" + temp.yes_rem + ";" + temp.no_rem + ";"
                 + temp.choose_cities + ";" + temp.bad_inet + ";" + temp.exit_ + ";"
                 + temp.make_connect + ";" + temp.are_exit + ";" + temp.calendar + ";"
-                + temp.week + ";" + temp.week_day + ";" + temp.day + ";" + temp.from;
+                + temp.week + ";" + temp.week_day + ";" + temp.day + ";" + temp.from + ";"
+                + temp.date_change + ";" + temp.info;
 
 //            message (translateModel.lang);
 //            message (translateModel.words);
@@ -111,6 +112,12 @@ namespace Multicalendar {
                         break;
                     case "from":
                         _currentLocale.from = listTranslator[i].translation;
+                        break;
+                    case "Date Change":
+                        _currentLocale.date_change = listTranslator[i].translation;
+                        break;
+                    case "Info":
+                        _currentLocale.info = listTranslator[i].translation;
                         break;
                     default:
                         break;

@@ -19,7 +19,8 @@ namespace Multicalendar {
 
         private Gtk.GestureClick press;
 
-        const int DIVIDE = 80;
+        const int DIVIDE = 160;//80;
+        const int DIVIDE4 = 80;
         const int DIVIDE2 = 30;
         const int DIVIDE3 = 100;
 
@@ -158,7 +159,7 @@ namespace Multicalendar {
 
             context.select_font_face ("Adventure", Cairo.FontSlant.NORMAL, Cairo.FontWeight.BOLD);
   	        //context.move_to (x + width / 3.25 - font_size / 2, y + height / 2.1 + font_size / 2);
-  	        context.move_to (x + width / 3.25 - font_size / 2 + DIVIDE, y + 76 + font_size / 2); //66
+  	        context.move_to (x + width / 3.25 - font_size / 2 + DIVIDE4, y + 76 + font_size / 2); //66
   	        //context.move_to (x, y + 12);
   	        context.show_text (weekdaytrans);
 

@@ -44,8 +44,8 @@ namespace Multicalendar {
             item_theme.set_attribute ("custom", "s", "theme");
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //            var item_preferences = new GLib.MenuItem (_("Preferences"), "app.preferences");
-            var item_info = new GLib.MenuItem (_("Info"), "app.info");
-            var item_datechange = new GLib.MenuItem (_("Date Change"), "app.datechange");
+            var item_info = new GLib.MenuItem (_(locale.info), "app.info");
+            var item_datechange = new GLib.MenuItem (_(locale.date_change), "app.datechange");
             var item_language = new GLib.MenuItem (_(locale.language), "app.language");
 
             var item_about = new GLib.MenuItem (_(locale.about +" multiCalendar"), "app.about");
@@ -150,6 +150,7 @@ namespace Multicalendar {
             var model = this.model;
             message(model.id.to_string());
             var wikiModel = wiki.getByIndex (model.id);
+            message(wikiModel.wiki);
 
             var browser = new BrowserWindow(
             wikiModel.wiki, wikiModel.nname);

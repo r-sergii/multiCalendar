@@ -23,6 +23,8 @@ namespace Multicalendar {
         public const string week_day = "week-day";
         public const string day = "day";
         public const string from = "from";
+        public const string date_change = "date-change";
+        public const string info = "info";
     }
 
     const char SPACE = 32;
@@ -50,6 +52,8 @@ namespace Multicalendar {
         public string week_day;
         public string day;
         public string from;
+        public string date_change;
+        public string info;
 
         public LocaleModel() {
             reinit ();
@@ -78,6 +82,8 @@ namespace Multicalendar {
             week_day = "Week%20Day";
             day = "Day";
             from = "from";
+            date_change = "Date%20Change";
+            info = "Info";
         }
 
         public void reinit () {
@@ -103,6 +109,8 @@ namespace Multicalendar {
             week_day = "Week Day";
             day = "Day";
             from = "from";
+            date_change = "Date Change";
+            info = "Info";
         }
 
         public void fromSettings (GLib.Settings settings)
@@ -131,6 +139,8 @@ namespace Multicalendar {
             week_day = settings.get_string (LocaleField.week_day);
             day = settings.get_string (LocaleField.day);
             from = settings.get_string (LocaleField.from);
+            date_change = settings.get_string (LocaleField.date_change);
+            info = settings.get_string (LocaleField.info);
         }
 
         public void toSettings (GLib.Settings settings)
@@ -159,6 +169,8 @@ namespace Multicalendar {
             settings.set_string (LocaleField.week_day, week_day);
             settings.set_string (LocaleField.day, day);
             settings.set_string (LocaleField.from, from);
+            settings.set_string (LocaleField.date_change, date_change);
+            settings.set_string (LocaleField.info, info);
         }
     }
 }

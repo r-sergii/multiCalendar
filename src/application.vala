@@ -2,6 +2,8 @@ namespace Multicalendar {
     public class Application : Adw.Application {
 
         public string baseUrl = "http://192.168.0.105:8070/api/calendar/";
+//        public string vercelUrl = "http://192.168.0.105:8020/api/calendarwiki/lang/";
+        public string vercelUrl = "https://multiapps-seven.vercel.app/api/calendarwiki/lang/";
 
         public Adw.ColorScheme theme { get; set; }
         private Multicalendar.CalendarService _calendarService;
@@ -54,6 +56,9 @@ namespace Multicalendar {
 
             init_app_theme ();
 
+            var app = GLib.Application.get_default();
+            var locale = (app as Multicalendar.Application).settingsService.locale.locale;
+
             // Css settings
             var provider = new Gtk.CssProvider ();
             provider.load_from_resource ("/io/github/r_sergii/multiCalendar/theme_switcher.css");
@@ -75,7 +80,8 @@ namespace Multicalendar {
                 _monthsService.getItems ();
                 _daysService.getItems ();
                 _infoService.getItems ();
-                _wikiService.getItems ("en");
+                message(locale);
+                _wikiService.getItems (locale);//"en");
                 Timeout.add (3000, make_window);
 
 //                win = this.create_window ();

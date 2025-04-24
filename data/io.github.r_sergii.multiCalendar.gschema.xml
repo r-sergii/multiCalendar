@@ -70,5 +70,11 @@
 	  <key name="from" type="s">
 	    <default>"from"</default>
 	  </key>
+	  <key name="date-change" type="s">
+	    <default>"Date Change"</default>
+	  </key>
+	  <key name="info" type="s">
+	    <default>"Info"</default>
+	  </key>
 	</schema>
 </schemalist>

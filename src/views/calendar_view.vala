@@ -93,7 +93,7 @@ namespace Multicalendar {
             height--;
             width--;
             height--;
-            message(height.to_string());
+//            message(height.to_string());
             int font_size = height / 3;// 12;
             context.move_to(x,y+height/2);
             context.set_line_width(1);
