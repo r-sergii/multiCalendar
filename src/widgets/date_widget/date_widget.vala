@@ -55,6 +55,9 @@ namespace Multicalendar {
                 if(model.id == 10) {
                     win.applyCalendar10 (model);
                 }
+                else if((model.id == 11) || (model.id == 13)) {
+                    win.applyCalendar6 (model);
+                }
                 else {
                     win.applyCalendar (model);
                 }
