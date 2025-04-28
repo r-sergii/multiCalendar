@@ -1,6 +1,6 @@
 namespace Multicalendar {
 
-    class CalendarView : Gtk.DrawingArea
+    class Calendar10View : Gtk.DrawingArea
     {
         private Multicalendar.CalendarModel _model;
 //        private Gdk.Pixbuf pixbuf;
@@ -14,7 +14,7 @@ namespace Multicalendar {
             }
         }
 
-        public CalendarView () {
+        public Calendar10View () {
 //            pixbuf
   //              = new Gdk.Pixbuf.from_resource_at_scale ( "/io/github/r_sergii/multiCalendar/image/question128.svg",
     //            40, 40, true);
@@ -36,12 +36,12 @@ namespace Multicalendar {
 	//		    int width = drawing_area.get_allocated_width ();
 			    Gdk.RGBA color = style_context.get_color ();
 
-                int size_cell_width = width / 8;
-                int size_cell_height = height / 8;
+                int size_cell_width = width / 11;
+                int size_cell_height = height / 5;
 
 	            roundRectDate(context, color,
 	                size_cell_width * 0, size_cell_height * 0,
-	                size_cell_width * 8, size_cell_height, 10);
+	                size_cell_width * 11, size_cell_height, 10);
 
 //	            roundRectInfo(context, color,
 	//                size_cell_width * 0, size_cell_height * 1,
@@ -65,10 +65,27 @@ namespace Multicalendar {
 //////// nomers days
                 int k = 0;
                 int n = 0;
-                for(int i = 2;i<8;i++) {
-                    for(int j = 1;j<=7;j++) {
+                for(int i = 2;i<5;i++) {
+                    for(int j = 1;j<=10;j++) {
                         k++;
-                        if(k < int.parse(_model.firstDayExoticMonth)) {
+                        if (n < int.parse(_model.daysInMonth)){
+                            n++;
+                            bool higt = false;
+                            if(n == int.parse(_model.day)) {
+                                higt = true;
+                            }
+            	            roundRect(context, color,
+            	                size_cell_width * j, size_cell_height * i,
+            	                size_cell_width, size_cell_height, 10, n.to_string(), higt);
+                        }
+                        else {
+                            n++;
+            	            roundRect(context, color,
+            	                size_cell_width * j, size_cell_height * i,
+            	                size_cell_width, size_cell_height, 10, "");
+                        }
+
+/*                        if(k < int.parse(_model.firstDayExoticMonth)) {
             	            roundRect(context, color,
             	                size_cell_width * j, size_cell_height * i,
             	                size_cell_width, size_cell_height, 10, "");
@@ -89,6 +106,7 @@ namespace Multicalendar {
             	                size_cell_width * j, size_cell_height * i,
             	                size_cell_width, size_cell_height, 10, "");
                         }
+*/
                     }
 	            }
         }
@@ -103,7 +121,7 @@ namespace Multicalendar {
             width--;
             height--;
 //            message(height.to_string());
-            int font_size = height / 3;// 12;
+            int font_size = height / 4;// 12;
             context.move_to(x,y+height/2);
             context.set_line_width(1);
             context.arc(x+r, y+r, r, Math.PI, 3*Math.PI/2);
@@ -148,7 +166,7 @@ namespace Multicalendar {
             width--;
             height--;
             message(height.to_string());
-            int font_size = height / 3;// 12;
+            int font_size = height / 4;// 12;
             context.move_to(x,y+height/2);
             context.set_line_width(1);
             context.arc(x+r, y+r, r, Math.PI, 3*Math.PI/2);
@@ -212,7 +230,7 @@ namespace Multicalendar {
             width--;
             height--;
 //            message(height.to_string());
-            int font_size = height / 3;// 12;
+            int font_size = height / 4;// 12;
             context.move_to(x,y+height/2);
             context.set_line_width(1);
             context.arc(x+r, y+r, r, Math.PI, 3*Math.PI/2);
@@ -250,7 +268,7 @@ namespace Multicalendar {
             width--;
             height--;
             message(height.to_string());
-            int font_size = height / 3;// 12;
+            int font_size = height / 4;// 12;
             context.move_to(x,y+height/2);
             context.set_line_width(1);
             context.arc(x+r, y+r, r, Math.PI, 3*Math.PI/2);

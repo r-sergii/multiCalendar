@@ -17,9 +17,12 @@ namespace Multicalendar {
 //        [GtkChild]
   //      private unowned Adw.MenuButton open_button;
 
+//        private Multicalendar.CalendarModel _model;
+        private int64 _id_model;
         private Multicalendar.VertView vertView;
         private Multicalendar.HorizView horizView;
         private Multicalendar.CalendarView calendarView;
+        private Multicalendar.Calendar10View calendar10View;
         private Multicalendar.DateChangeView dateChangeView;
         private Multicalendar.InfoView infoView;
 //        private Multicalendar.WaitView waitView;
@@ -92,6 +95,7 @@ namespace Multicalendar {
             vertView = new VertView ();
             horizView = new HorizView ();
             calendarView = new CalendarView ();
+            calendar10View = new Calendar10View ();
             dateChangeView = new DateChangeView ();
             infoView = new InfoView ();
 //            waitView = new WaitView ();
@@ -106,11 +110,23 @@ namespace Multicalendar {
             mainBox.append (scroll);
         }
 
-        public void applyCalendar () {
+        public void applyCalendar (Multicalendar.CalendarModel _model) {
+            calendarView.model = _model;
             var app = GLib.Application.get_default();
             var locale = (app as Multicalendar.Application).settingsService.locale;
             this.set_title (calendarView.calendarModel.calendar + " " + locale.calendar);
             scroll.set_child (calendarView);
+            menu_button.visible = false;
+            back_button.visible = true;
+            question_button.visible = true;
+        }
+
+        public void applyCalendar10 (Multicalendar.CalendarModel _model) {
+            calendar10View.model = _model;
+            var app = GLib.Application.get_default();
+            var locale = (app as Multicalendar.Application).settingsService.locale;
+            this.set_title (calendar10View.calendarModel.calendar + " " + locale.calendar);
+            scroll.set_child (calendar10View);
             menu_button.visible = false;
             back_button.visible = true;
             question_button.visible = true;
@@ -147,9 +163,9 @@ namespace Multicalendar {
         private void on_call_wiki () {
             var app = GLib.Application.get_default();
             var wiki = (app as Multicalendar.Application).wikiService;
-            var model = this.model;
-            message(model.id.to_string());
-            var wikiModel = wiki.getByIndex (model.id);
+//            var model = this.model;
+  //          message(model.id.to_string());
+            var wikiModel = wiki.getByIndex (_id_model);//model.id);
             message(wikiModel.wiki);
 
             var browser = new BrowserWindow(
@@ -165,20 +181,31 @@ namespace Multicalendar {
             progress.present ();
         }
 
+        public int64 id_model {
+            set {
+                _id_model = value;
+            }
+            get {
+                return _id_model;
+            }
+        }
+/*
         public Multicalendar.CalendarModel model {
             set {
-                calendarView.calendarModel = value;
+//                calendarView.calendarModel = value;
+                _model = value;
             }
             get {
 //                if(calendarView.calendarModel != null) {
-                    return calendarView.calendarModel;
+//                    return calendarView.calendarModel;
+                    return _model;
   //              }
     //            else {
       //              return new Multicalendar.CalendarModel("", "", "", "", "", "", "", "", "", "", "", "", "", "");
         //        }
             }
         }
-
+*/
         //private
         public void applyView () {
             back_button.visible = false;

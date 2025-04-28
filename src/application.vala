@@ -1,7 +1,7 @@
 namespace Multicalendar {
     public class Application : Adw.Application {
 
-        public string baseUrl = "http://192.168.0.105:8070/api/calendar/";
+        public string baseUrl = "http://192.168.0.106:8070/api/calendar/";
 //        public string vercelUrl = "http://192.168.0.105:8020/api/calendarwiki/lang/";
         public string vercelUrl = "https://multiapps-seven.vercel.app/api/calendarwiki/lang/";
 

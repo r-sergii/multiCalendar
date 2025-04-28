@@ -22,7 +22,7 @@ namespace Multicalendar {
         const int DIVIDE = 160;//80;
         const int DIVIDE4 = 80;
         const int DIVIDE2 = 30;
-        const int DIVIDE3 = 100;
+        const int DIVIDE3 = 130;
 
         public DateWidget (Multicalendar.CalendarModel model, Multicalendar.LocaleModel local)
         {
@@ -50,8 +50,15 @@ namespace Multicalendar {
 
                 var app = GLib.Application.get_default();
                 Multicalendar.MainWindow win = (app as Multicalendar.Application).active_window as Multicalendar.MainWindow;
-                win.model = model;
-                win.applyCalendar ();
+                win.id_model = model.id;
+                message(model.id.to_string());
+                if(model.id == 10) {
+                    win.applyCalendar10 (model);
+                }
+                else {
+                    win.applyCalendar (model);
+                }
+
             });
 
             this.add_controller (press);
