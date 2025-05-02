@@ -37,12 +37,13 @@ Switching to a different date display formats.
 
 
 
-![screenshot1.png](/data/screenshots/screenshot1.png)
-![screenshot2.png](/data/screenshots/screenshot2.png)
-![screenshot3.png](/data/screenshots/screenshot3.png)
-![screenshot4.png](/data/screenshots/screenshot4.png)
-![screenshot5.png](/data/screenshots/screenshot5.png)
-![screenshot6.png](/data/screenshots/screenshot6.png)
+![screenshots1.png](/data/screenshots/screenshots1.png)
+![screenshots2.png](/data/screenshots/screenshots2.png)
+![screenshots3.png](/data/screenshots/screenshots3.png)
+![screenshots4.png](/data/screenshots/screenshots4.png)
+![screenshots5.png](/data/screenshots/screenshots5.png)
+![screenshots6.png](/data/screenshots/screenshots6.png)
+![screenshots7.png](/data/screenshots/screenshots7.png)
 
 <p align="center">
 <a href="https://flathub.org/apps/io.github.r_sergii.multiCalendar">
