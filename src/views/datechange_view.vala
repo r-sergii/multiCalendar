@@ -39,6 +39,29 @@ namespace Multicalendar {
 //            centry = (int)spinCentry.value;
             year = (int)(spin4.value * 1000 + spin3.value * 100 + spin2.value * 10 + spin1.value);
             month = comboMonth.get_active() + 1;
+            switch(month) {
+                case 1:
+                case 3:
+                case 5:
+                case 7:
+                case 8:
+                case 10:
+                case 12:
+                        spinDay.set_range(1,31);
+                        break;
+                case 4:
+                case 6:
+                case 9:
+                case 11:
+                        spinDay.set_range(1,30);
+                        break;
+                case 2:
+                        spinDay.set_range(1,28);
+                        break;
+                default:
+                        spinDay.set_range(1,28);
+                        break;
+            }
             day = (int)spinDay.value;
             applyDate();
         }
@@ -94,7 +117,7 @@ namespace Multicalendar {
             var labelDay = new Gtk.Label ("Day :");
 //            spinCentry = new Gtk.SpinButton.with_range(0,99,1);
 //            spinYear = new Gtk.SpinButton.with_range(0,99,1);
-            spinDay = new Gtk.SpinButton.with_range(1,30,1);
+            spinDay = new Gtk.SpinButton.with_range(1,31,1);
 
 //            spinCentry.value = (int)Math.round(date.get_year() / 100);
 //            spinYear.value = date.get_year() - Math.round(date.get_year() / 100) * 100 ;

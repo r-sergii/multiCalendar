@@ -9,6 +9,7 @@ multicalendar_sources = [
   'views/horiz_view.vala',
   'views/calendar_view.vala',
   'views/calendar6_view.vala',
+  'views/calendar06_view.vala',
   'views/calendar10_view.vala',
   'views/datechange_view.vala',
   'views/info_view.vala',

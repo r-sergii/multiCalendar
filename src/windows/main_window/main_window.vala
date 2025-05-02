@@ -23,6 +23,7 @@ namespace Multicalendar {
         private Multicalendar.HorizView horizView;
         private Multicalendar.CalendarView calendarView;
         private Multicalendar.Calendar6View calendar6View;
+        private Multicalendar.Calendar06View calendar06View;
         private Multicalendar.Calendar10View calendar10View;
         private Multicalendar.DateChangeView dateChangeView;
         private Multicalendar.InfoView infoView;
@@ -97,6 +98,7 @@ namespace Multicalendar {
             horizView = new HorizView ();
             calendarView = new CalendarView ();
             calendar6View = new Calendar6View ();
+            calendar06View = new Calendar06View ();
             calendar10View = new Calendar10View ();
             dateChangeView = new DateChangeView ();
             infoView = new InfoView ();
@@ -129,6 +131,17 @@ namespace Multicalendar {
             var locale = (app as Multicalendar.Application).settingsService.locale;
             this.set_title (calendar6View.calendarModel.calendar + " " + locale.calendar);
             scroll.set_child (calendar6View);
+            menu_button.visible = false;
+            back_button.visible = true;
+            question_button.visible = true;
+        }
+
+        public void applyCalendar06 (Multicalendar.CalendarModel _model) {
+            calendar06View.model = _model;
+            var app = GLib.Application.get_default();
+            var locale = (app as Multicalendar.Application).settingsService.locale;
+            this.set_title (calendar06View.calendarModel.calendar + " " + locale.calendar);
+            scroll.set_child (calendar06View);
             menu_button.visible = false;
             back_button.visible = true;
             question_button.visible = true;

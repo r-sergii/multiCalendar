@@ -3,7 +3,107 @@
 	<id>ua.inf.multiapps.multiCalendar.desktop</id>
 	<metadata_license>CC0-1.0</metadata_license>
 	<project_license>Apache-2.0</project_license>
+
+  <name>multiCalendar</name>
+  <summary>Calendars of different nations, religions and cultures on your device</summary>
+  <provides>
+    <binary>io.github.r_sergii.multiCalendar</binary>
+  </provides>
+  <developer_name>Serhii Rudchenko</developer_name>
+  <developer id="io.github.r-sergii">
+    <name>Serhii Rudchenko</name>
+  </developer>
+  <launchable type="desktop-id">io.github.r_sergii.multiCalendar.desktop</launchable>
+
 	<description>
 	  <p>No description</p>
+
+	  <p>multiCalendar combines in a single application acting and "not very acting"
+	    calendars of various nations, religions and cultures on your device.</p>
+
+    <p>Find out when the next New Year comes the Orthodox, Islams, Persians, Jews,
+      Buddhists, or when will the next New year on the eastern calendar.
+    Or move into the past to clarify what day of the week passed landmark historic date
+    (For example the French revolutionary calendar) and a date match in the calendar
+      of other nations or religions.
+    And just ask what day of the week of your family members were born.
+    And a lot of other opportunities open to you this application.</p>
+
+    <p>In one application:</p>
+
+	  <ul>
+      <li>Gregorian calendar - adopted today in the world as a major.</li>
+      <li>Julian calendar - used and currently Orthodox hrestiyanami.
+        According to it, and now celebrate the Old New Year in Eastern Europe.</li>
+      <li>Chronological Calendar - Gregorian through years taken into account
+        by Pope Gregory after 15/10/1583 and 04/10/1583 to the Julian calendar.</li>
+      <li>Moon Hidzhira - calendar adopted in Islamic countries.</li>
+      <li>And the list goes on ....</li>
+      <li>Persian calendar.</li>
+      <li>The Jewish calendar.</li>
+      <li>EastAsian lunar calendar.</li>
+      <li>Coptic calendar.</li>
+      <li>The Ethiopian calendar.</li>
+      <li>French revolutionary calendar.</li>
+	    <li>Bahai calendar</li>
+	    <li>Japan lunar calendar</li>
+	    <li>The Human Calculator calendar</li>
+    </ul>
+
+	  <p>
+      Instant full encyclopedic information about each of the calendar view.
+      The indispensable app for all curious users.
+      It features a simple and intuitive interface.
+      Directory names days of the week or decades taken in different calendars.
+      Directory names of the months in different parts of the calendars.
+      Switching to a different date display formats.
+      Customizable multilingual interface of the application.
+    </p>
 	</description>
+
+  <screenshots>
+    <screenshot type="default">
+      <caption>list calendars with current dates</caption>
+      <image>http://multiapps.inf.ua/screenshots/mcalendarlite/flathub/screenshot1.png</image>
+    </screenshot>
+    <screenshot type="default">
+      <caption>example calendar</caption>
+      <image>http://multiapps.inf.ua/screenshots/mcalendarlite/flathub/screenshot21.png</image>
+    </screenshot>
+    <screenshot type="default">
+      <caption>change current date</caption>
+      <image>http://multiapps.inf.ua/screenshots/mcalendarlite/flathub/screenshot3.png</image>
+    </screenshot>
+    <screenshot type="default">
+      <caption>days & months calendar</caption>
+      <image>http://multiapps.inf.ua/screenshots/mcalendarlite/flathub/screenshot4.png</image>
+    </screenshot>
+    <screenshot type="default">
+      <caption>change language application</caption>
+      <image>http://multiapps.inf.ua/screenshots/mcalendarlite/flathub/screenshot5.png</image>
+    </screenshot>
+    <screenshot type="default">
+      <caption>horizontal list calendars with current dates</caption>
+      <image>http://multiapps.inf.ua/screenshots/mcalendarlite/flathub/screenshot6.png</image>
+    </screenshot>
+    <screenshot type="default">
+      <caption>complete encyclopedic information about each chemical element</caption>
+      <image>http://multiapps.inf.ua/screenshots/mcalendarlite/flathub/screenshot7.png</image>
+    </screenshot>
+  </screenshots>
+
+  <url type="homepage">https://r-serega.github.io/mapps/</url>
+  <url type="help">https://r-serega.github.io/mapps/</url>
+
+  <content_rating type="oars-1.1"/>
+
+  <releases>
+    <release version="0.1.0" date="2025-05-10">
+    <description translate="no">
+      <ul>
+        <li>Initial release</li>
+      </ul>
+    </description>
+    </release>
+  </releases>
 </component>
