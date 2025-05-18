@@ -46,10 +46,15 @@ multicalendar_sources = [
   'services/settings/settings_model.vala',
   'services/settings/theme_model.vala',
   'services/settings/locale_model.vala',
+  'services/appsload/appsload_service.vala',
+  'services/appsload/appsload_provider.vala',
+  'services/appsload/appsload_model.vala',
   'services/translate/translate_service.vala',
   'services/translate/translate_provider.vala',
   'services/translate/translate_model.vala',
   'utils/http.vala',
+  'utils/info_linux.vala',
+  'utils/info_linux.c',
   'application.vala',
 ]
 

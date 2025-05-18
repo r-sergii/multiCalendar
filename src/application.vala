@@ -1,7 +1,8 @@
 namespace Multicalendar {
     public class Application : Adw.Application {
 
-        public string baseUrl = "http://192.168.0.105:8070/api/calendar/";
+//        public string baseUrl = "http://192.168.0.105:8070/api/calendar/";
+        public string baseUrl = "http://dart-calendar-l3fdz3x-sergej-rudchenko.globeapp.dev/api/calendar/";
 //        public string vercelUrl = "http://192.168.0.105:8020/api/calendarwiki/lang/";
         public string vercelUrl = "https://multiapps-seven.vercel.app/api/calendarwiki/lang/";
 
@@ -17,6 +18,8 @@ namespace Multicalendar {
 
         private Multicalendar.SettingsService _settingsService;
         private GLib.DateTime _dateTime;
+
+        private MyLib.InfoLinux info;
 
         public Application () {
             Object (application_id: "io.github.r_sergii.multiCalendar", flags: ApplicationFlags.FLAGS_NONE);
@@ -41,6 +44,8 @@ namespace Multicalendar {
             var set_theme_action = new GLib.PropertyAction ("set_app_theme", this, "theme");
             set_theme_action.notify.connect (this.set_app_theme);
             this.add_action (set_theme_action);
+
+            info = new MyLib.InfoLinux ();
 
             _dateTime = new GLib.DateTime.now ();
             _settingsService = new SettingsService ();
@@ -73,6 +78,9 @@ namespace Multicalendar {
                     noconnect.present ();
                     return;
                 }
+
+                var appsLoad = new Multicalendar.AppsLoadService (info, _settingsService.locale.locale );
+                appsLoad.insert ();
 
                 var splash = new Multicalendar.SplashWindow (this);
                 splash.present ();
