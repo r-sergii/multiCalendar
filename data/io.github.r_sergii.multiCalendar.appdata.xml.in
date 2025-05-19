@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop">
-	<id>ua.inf.multiapps.multiCalendar.desktop</id>
+	<id>ua.inf.multiapps.multiCalendar</id>
 	<metadata_license>CC0-1.0</metadata_license>
 	<project_license>Apache-2.0</project_license>
 
@@ -16,8 +16,6 @@
   <launchable type="desktop-id">io.github.r_sergii.multiCalendar.desktop</launchable>
 
 	<description>
-	  <p>No description</p>
-
 	  <p>multiCalendar combines in a single application acting and "not very acting"
 	    calendars of various nations, religions and cultures on your device.</p>
 
