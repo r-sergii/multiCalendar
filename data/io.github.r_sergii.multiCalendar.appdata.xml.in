@@ -98,7 +98,7 @@
   <content_rating type="oars-1.1"/>
 
   <releases>
-    <release version="0.1.0" date="2025-05-10">
+    <release version="0.1.0" date="2025-05-20">
     <description translate="no">
       <ul>
         <li>Initial release</li>
