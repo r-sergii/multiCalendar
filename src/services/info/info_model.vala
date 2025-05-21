@@ -41,35 +41,35 @@ namespace Multicalendar {
                     case InfoField.calendar:
                         unowned Json.Node it = obj.get_member (name);
                         calendar = obj.get_string_member (InfoField.calendar);
-                        message(calendar);
+//                        message(calendar);
                         break;
                     case InfoField.font:
                         unowned Json.Node it = obj.get_member (name);
                         font = obj.get_string_member (InfoField.font);
-                        message(font);
+//                        message(font);
                         break;
                     case InfoField.month:
                         unowned Json.Node it = obj.get_member (name);
                         Json.Array jsonArrayMonth = obj.get_array_member (InfoField.month);
                         int64 count = jsonArrayMonth.get_length ();
-                        message (count.to_string());
+//                        message (count.to_string());
                         for(int i = 0;i<count;i++) {
                             month.add (jsonArrayMonth.get_string_element (i));
                         }
                         for(int i = 0;i<month.size;i++) {
-                            message(month[i]);
+//                            message(month[i]);
                         }
                         break;
                     case InfoField.day:
                         unowned Json.Node it = obj.get_member (name);
                         Json.Array jsonArrayDay = obj.get_array_member (InfoField.day);
                         int64 count = jsonArrayDay.get_length ();
-                        message (count.to_string());
+//                        message (count.to_string());
                         for(int i = 0;i<count;i++) {
                             day.add (jsonArrayDay.get_string_element (i));
                         }
                         for(int i = 0;i<day.size;i++) {
-                            message(day[i]);
+//                            message(day[i]);
                         }
                         break;
                     case InfoField.monthTranslate:
@@ -77,12 +77,12 @@ namespace Multicalendar {
                         Json.Array jsonArrayMonthTranslate
                             = obj.get_array_member (InfoField.monthTranslate);
                         int64 count = jsonArrayMonthTranslate.get_length ();
-                        message (count.to_string());
+//                        message (count.to_string());
                         for(int i = 0;i<count;i++) {
                             monthTranslate.add (jsonArrayMonthTranslate.get_string_element (i));
                         }
                         for(int i = 0;i<monthTranslate.size;i++) {
-                            message(monthTranslate[i]);
+//                            message(monthTranslate[i]);
                         }
                         break;
                     case InfoField.dayTranslate:
@@ -90,12 +90,12 @@ namespace Multicalendar {
                         Json.Array jsonArrayDayTranslate
                             = obj.get_array_member (InfoField.dayTranslate);
                         int64 count = jsonArrayDayTranslate.get_length ();
-                        message (count.to_string());
+//                        message (count.to_string());
                         for(int i = 0;i<count;i++) {
                             dayTranslate.add (jsonArrayDayTranslate.get_string_element (i));
                         }
                         for(int i = 0;i<dayTranslate.size;i++) {
-                            message(dayTranslate[i]);
+//                            message(dayTranslate[i]);
                         }
                         break;
                     default:

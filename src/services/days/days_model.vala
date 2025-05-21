@@ -19,7 +19,7 @@ namespace Multicalendar {
                     case DaysField.day:
                         unowned Json.Node it = obj.get_member (name);
                         day = obj.get_string_member (DaysField.day);
-                        message (day);
+//                        message (day);
                         break;
                     default:
                         break;

@@ -133,9 +133,9 @@ namespace Multicalendar {
             spin1.set_orientation (Gtk.Orientation.VERTICAL);
 
             string sYear = date.get_year().to_string();
-            message(sYear);
-            message(sYear.length.to_string());
-            message(sYear.substring(2,1));
+//            message(sYear);
+  //          message(sYear.length.to_string());
+    //        message(sYear.substring(2,1));
             if(sYear.length > 3) {
                 spin4.value = int.parse(sYear.substring(0,1));
                 spin3.value = int.parse(sYear.substring(1,1));

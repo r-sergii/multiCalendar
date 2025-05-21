@@ -15,7 +15,7 @@ namespace Multicalendar {
         public WikiModel getByIndex (int64 id) {
             for(int i = 0;i<listWiki.size;i++) {
                 if(id == listWiki[i].id) {
-                    message(listWiki[i].wiki);
+//                    message(listWiki[i].wiki);
                     return listWiki[i];
                 }
             }

@@ -19,7 +19,7 @@ namespace Multicalendar {
                     case MonthsField.month:
                         unowned Json.Node it = obj.get_member (name);
                         month = obj.get_string_member (MonthsField.month);
-                        message (month);
+//                        message (month);
                         break;
                     default:
                         break;

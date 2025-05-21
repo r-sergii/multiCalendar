@@ -28,22 +28,22 @@ namespace Multicalendar {
                     case WikiField.id:
                         unowned Json.Node it = obj.get_member (name);
                         id = obj.get_int_member (WikiField.id);
-                        message (id.to_string());
+//                        message (id.to_string());
                         break;
                     case WikiField.nomer:
                         unowned Json.Node it = obj.get_member (name);
                         nomer = obj.get_int_member (WikiField.nomer);
-                        message (nomer.to_string());
+//                        message (nomer.to_string());
                         break;
                     case WikiField.name:
                         unowned Json.Node it = obj.get_member (name);
                         nname = obj.get_string_member (WikiField.name);
-                        message (nname);
+//                        message (nname);
                         break;
                     case WikiField.wikiUrl:
                         unowned Json.Node it = obj.get_member (name);
                         wiki = obj.get_string_member (WikiField.wikiUrl);
-                        message (wiki);
+//                        message (wiki);
                         break;
                     default:
                         break;

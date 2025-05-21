@@ -18,7 +18,7 @@ namespace Multicalendar {
                 var response = http.get( host );
                 if ( response.status.code == 200 ){
                     //stdout.printf(@"My public IP address is: $(response)\n");
-                    message (response.to_string ());
+//                    message (response.to_string ());
 
                     var parser = new Json.Parser ();
                     parser.load_from_data ((string)response.to_string (), -1);
@@ -29,7 +29,7 @@ namespace Multicalendar {
                         listWiki.add (new WikiModel.fromJson (item) );
 
                         i++;
-                        message(i.to_string());
+//                        message(i.to_string());
                     }
                 }
             } catch (Error err){

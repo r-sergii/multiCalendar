@@ -88,7 +88,7 @@ namespace Multicalendar {
                 _monthsService.getItems ();
                 _daysService.getItems ();
                 _infoService.getItems ();
-                message(locale);
+//                message(locale);
                 _wikiService.getItems (locale);//"en");
                 Timeout.add (3000, make_window);
 

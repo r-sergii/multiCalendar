@@ -88,92 +88,92 @@ namespace Multicalendar {
                     case CalendarField.id:
                         unowned Json.Node it = obj.get_member (name);
                         id = obj.get_int_member (CalendarField.id);
-                        message (id.to_string());
+//                        message (id.to_string());
                         break;
                     case CalendarField.calendar:
                         unowned Json.Node it = obj.get_member (name);
                         calendar = obj.get_string_member (CalendarField.calendar);
-                        message(calendar);
+//                        message(calendar);
                         break;
                     case CalendarField.image:
                         unowned Json.Node it = obj.get_member (name);
                         image = obj.get_string_member (CalendarField.image);
-                        message(image);
+//                        message(image);
                         break;
                     case CalendarField.font:
                         unowned Json.Node it = obj.get_member (name);
                         font = obj.get_string_member (CalendarField.font);
-                        message(font);
+//                        message(font);
                         break;
                     case CalendarField.year:
                         unowned Json.Node it = obj.get_member (name);
                         year = obj.get_string_member (CalendarField.year);
-                        message(year);
+//                        message(year);
                         break;
                     case CalendarField.month:
                         unowned Json.Node it = obj.get_member (name);
                         month = obj.get_string_member (CalendarField.month);
-                        message (month);
+//                        message (month);
                         break;
                     case CalendarField.day:
                         unowned Json.Node it = obj.get_member (name);
                         day = obj.get_string_member (CalendarField.day);
-                        message (day);
+//                        message (day);
                         break;
                     case CalendarField.week:
                         unowned Json.Node it = obj.get_member (name);
                         week = obj.get_string_member (CalendarField.week);
-                        message(week);
+//                        message(week);
                         break;
                     case CalendarField.dayOfYear:
                         unowned Json.Node it = obj.get_member (name);
                         dayOfYear = obj.get_string_member (CalendarField.dayOfYear);
-                        message(dayOfYear);
+//                        message(dayOfYear);
                         break;
                     case CalendarField.daysInYear:
                         unowned Json.Node it = obj.get_member (name);
                         daysInYear = obj.get_string_member (CalendarField.daysInYear);
-                        message(daysInYear);
+//                        message(daysInYear);
                         break;
                     case CalendarField.daysInMonth:
                         unowned Json.Node it = obj.get_member (name);
                         daysInMonth = obj.get_string_member (CalendarField.daysInMonth);
-                        message(daysInMonth);
+//                        message(daysInMonth);
                         break;
                     case CalendarField.isLeap:
                         unowned Json.Node it = obj.get_member (name);
                         isLeap = obj.get_string_member (CalendarField.isLeap);
-                        message(isLeap);
+//                        message(isLeap);
                         break;
                     case CalendarField.monthName:
                         unowned Json.Node it = obj.get_member (name);
                         monthName = obj.get_string_member (CalendarField.monthName);
-                        message(monthName);
+//                        message(monthName);
                         break;
                     case CalendarField.monthNameNum:
                         unowned Json.Node it = obj.get_member (name);
                         monthNameNum = obj.get_string_member (CalendarField.monthNameNum);
-                        message(monthNameNum);
+//                        message(monthNameNum);
                         break;
                     case CalendarField.dayName:
                         unowned Json.Node it = obj.get_member (name);
                         dayName = obj.get_string_member (CalendarField.dayName);
-                        message(dayName);
+//                        message(dayName);
                         break;
                     case CalendarField.dayTranslateName:
                         unowned Json.Node it = obj.get_member (name);
                         dayTranslateName = obj.get_string_member (CalendarField.dayTranslateName);
-                        message(dayTranslateName);
+//                        message(dayTranslateName);
                         break;
                     case CalendarField.firstDayExoticMonth:
                         unowned Json.Node it = obj.get_member (name);
                         firstDayExoticMonth = obj.get_string_member (CalendarField.firstDayExoticMonth);
-                        message(firstDayExoticMonth);
+//                        message(firstDayExoticMonth);
                         break;
                     case CalendarField.firstWeekExoticMonth:
                         unowned Json.Node it = obj.get_member (name);
                         firstWeekExoticMonth = obj.get_string_member (CalendarField.firstWeekExoticMonth);
-                        message(firstWeekExoticMonth);
+//                        message(firstWeekExoticMonth);
                         break;
                     case CalendarField.shortNameDay:
                         unowned Json.Node it = obj.get_member (name);
@@ -182,7 +182,7 @@ namespace Multicalendar {
 //                        parseJsonArray (jsonArrayShortNameDay, shortNameDay);
 //                        shortNameDay.clear ();
                         int64 count = jsonArrayShortNameDay.get_length ();
-                        message (count.to_string());
+//                        message (count.to_string());
                         for(int i = 0;i<count;i++) {
 //                            shortNameDay.append ("jsonArrayShortNameDay.get_string_element (i)");
                             shortNameDay.add (jsonArrayShortNameDay.get_string_element (i));
@@ -192,7 +192,7 @@ namespace Multicalendar {
     //                    }
 
                         for(int i = 0;i<shortNameDay.size;i++) {
-                            message(shortNameDay[i]);
+//                            message(shortNameDay[i]);
                         }
                         break;
                     default:
